@@ -23,6 +23,18 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
+          test: /\.css$/,
+          include: appSrc,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: { importLoaders: 1 }
+            },
+            "postcss-loader"
+          ]
+        },
+        {
           test: /\.[jt]sx?$/,
           include: appSrc,
           use: {
