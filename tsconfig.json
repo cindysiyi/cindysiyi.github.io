@@ -14,5 +14,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src"]
+  "include": ["src", ".eslintrc.cjs", "tailwind.config.js", "postcss.config.js", "webpack.config.js"]
 }

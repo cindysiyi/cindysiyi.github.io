@@ -29,6 +29,7 @@ module.exports = {
     }
   },
   rules: {
+    "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/consistent-type-imports": [
       "error",

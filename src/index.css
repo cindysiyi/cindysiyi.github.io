@@ -1,13 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 html, body, #root {
   height: 100%;
-}
-
-* {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  overflow: hidden; /* Prevent default scroll, we will control it in the App container */
+}
+
+/* Custom scrollbar hide for cleaner look */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
