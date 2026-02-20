@@ -52,25 +52,46 @@ const Hero: React.FC = () => {
       <div className="hero-glow hero-glow-right pointer-events-none -z-20"></div>
       <div className="hero-vignette pointer-events-none absolute inset-0 -z-10"></div>
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="hero-code-text top-[6%] left-[8%] hero-code-float hero-code-float-1 -rotate-6">
+        <div
+          className="hero-code-text top-[6%] left-[8%] hero-code-float hero-code-float-1"
+          style={{ "--hero-tilt": "-7deg" } as React.CSSProperties}
+        >
           user_needs = true
         </div>
-        <div className="hero-code-text top-[18%] right-[12%] hero-code-float hero-code-float-2 rotate-6">
+        <div
+          className="hero-code-text top-[18%] right-[12%] hero-code-float hero-code-float-2"
+          style={{ "--hero-tilt": "6deg" } as React.CSSProperties}
+        >
           agent.execute()
         </div>
-        <div className="hero-code-text top-[20%] left-[12%] hero-code-float hero-code-float-3 -rotate-3">
+        <div
+          className="hero-code-text top-[30%] left-[16%] hero-code-float hero-code-float-3"
+          style={{ "--hero-tilt": "-4deg" } as React.CSSProperties}
+        >
           signal.boost(0.92)
         </div>
-        <div className="hero-code-text top-[40%] right-[14%] hero-code-float hero-code-float-4 rotate-3">
+        <div
+          className="hero-code-text top-[38%] right-[8%] hero-code-float hero-code-float-4"
+          style={{ "--hero-tilt": "3deg" } as React.CSSProperties}
+        >
           context.sync()
         </div>
-        <div className="hero-code-text top-[78%] left-[10%] hero-code-float hero-code-float-5 -rotate-2">
+        <div
+          className="hero-code-text top-[58%] left-[6%] hero-code-float hero-code-float-5"
+          style={{ "--hero-tilt": "-2deg" } as React.CSSProperties}
+        >
           intent.locked = 1
         </div>
-        <div className="hero-code-text top-[66%] right-[5%] hero-code-float hero-code-float-6 rotate-2">
+        <div
+          className="hero-code-text top-[70%] right-[14%] hero-code-float hero-code-float-6"
+          style={{ "--hero-tilt": "2deg" } as React.CSSProperties}
+        >
           pipeline.ready()
         </div>
-        <div className="hero-code-text bottom-[12%] left-[36%] hero-code-float hero-code-float-7 -rotate-6">
+        <div
+          className="hero-code-text bottom-[10%] left-[32%] hero-code-float hero-code-float-7"
+          style={{ "--hero-tilt": "-8deg" } as React.CSSProperties}
+        >
           latency = 18ms
         </div>
       </div>
@@ -86,9 +107,13 @@ const Hero: React.FC = () => {
         {/* Left Side: Manifesto & Audio */}
         <div className="flex flex-col items-start space-y-8 max-w-2xl z-20">
           <h1 className="hero-title">
-            {t("hero.title_line1")}
+            <span className="hero-type-line hero-type-line-1 hero-type-caret">
+              {t("hero.title_line1")}
+            </span>
             <br />
-            <span className="hero-highlight">{t("hero.title_line2")}</span>
+            <span className="hero-highlight hero-type-line hero-type-line-2 hero-type-caret">
+              {t("hero.title_line2")}
+            </span>
           </h1>
 
           <p className="hero-subtitle">{t("hero.subtitle")}</p>
@@ -172,7 +197,7 @@ const Hero: React.FC = () => {
               <img
                 src={config.heroImg}
                 alt="Profile"
-                className="w-full h-full object-contain object-bottom drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-contain object-bottom drop-shadow-2xl transform hover:scale-115 transition-transform duration-500"
                 style={{
                   maskImage:
                     "linear-gradient(to bottom, black 90%, transparent 100%)",
