@@ -1,10 +1,11 @@
 {
   "header": {
     "home": "首页",
-    "about": "关于",
+    "experience": "经历",
     "projects": "项目",
     "contact": "联系",
-    "wechat": "微信"
+    "wechat": "微信",
+    "about": "关于"
   },
   "hero": {
     "title_line1": "AI 产品",
@@ -18,6 +19,38 @@
     "main_heading": "战略家。创新者。建设者。",
     "description1": "凭借产品管理背景和对 AI 的深厚热情，我专注于将复杂的技术能力转化为有意义的用户价值。",
     "description2": "我的方法结合了数据驱动的洞察力和以人为本的设计原则，旨在构建不仅智能而且实用的产品。"
+  },
+  "experience": {
+    "section_title": "实习经历",
+    "read_more": "了解更多",
+    "byte_dance": {
+      "company": "字节跳动",
+      "role": "AI 创新业务部门产品运营实习生",
+      "period": "2025.09 - 2026.03",
+      "description": "参与 AI 内容生态建设，聚焦生成内容质量提升与数据体系搭建。",
+      "achievement1": "重构 PE 体系，抽检 1000+ 条内容，问题检出率提升 30%，审核效率提升 25%",
+      "achievement2": "搭建 5 万+ 素材标签库，输出 3 份洞察报告，支撑 4 个 AI 产品需求落地",
+      "achievement3": "运营 200+ 人玩家团，产出 500+ 优质内容，活跃率提升 18%",
+      "achievement4": "制定短剧质量标准，覆盖 10+ 场景，合规率提升 20%"
+    },
+    "shanghai_gov": {
+      "company": "上海市政府新闻办公室",
+      "role": "实习生",
+      "period": "2025.02 - 2025.08",
+      "description": "参与政府新闻发布与媒体沟通工作，协助策划与执行重大新闻发布活动。",
+      "achievement1": "协助组织 10+ 场新闻发布会，撰写新闻通稿与媒体问答",
+      "achievement2": "参与城市形象宣传片策划，覆盖主流媒体平台",
+      "achievement3": "监测舆情动态，输出日报周报，为决策提供数据支持"
+    },
+    "teaching": {
+      "company": "甘肃支教",
+      "role": "支教老师",
+      "period": "2023.09 - 2024.09",
+      "description": "投身西部教育事业，负责乡村小学教学与校园文化建设。",
+      "achievement1": "负责语文/英语教学，班级平均分提升 15 分",
+      "achievement2": "发起“乡村阅读计划”，募集图书 2000+ 册",
+      "achievement3": "组织校园文化节，丰富学生课余生活"
+    }
   },
   "projects": {
     "section_title": "精选作品",

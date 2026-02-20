@@ -1,10 +1,11 @@
 {
   "header": {
     "home": "Home",
-    "about": "About",
+    "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "wechat": "WECHAT"
+    "wechat": "WECHAT",
+    "about": "About"
   },
   "hero": {
     "title_line1": "AI PRODUCT",
@@ -18,6 +19,38 @@
     "main_heading": "Strategist. Innovator. Builder.",
     "description1": "With a background in product management and a deep passion for AI, I specialize in translating complex technical capabilities into meaningful user value.",
     "description2": "My approach combines data-driven insights with human-centric design principles to build products that are not just smart, but helpful."
+  },
+  "experience": {
+    "section_title": "Experience",
+    "read_more": "Read More",
+    "byte_dance": {
+      "company": "ByteDance",
+      "role": "AI Innovation Dept. Product Operations Intern",
+      "period": "2025.09 - 2026.03",
+      "description": "Participated in AI content ecosystem construction, focusing on content quality improvement and data system establishment.",
+      "achievement1": "reconstructed PE system, inspected 1000+ contents, detection rate +30%, efficiency +25%",
+      "achievement2": "Built 50k+ material tag library, delivered 3 insight reports, supported 4 AI product features",
+      "achievement3": "Managed 200+ user community, generated 500+ quality contents, activity rate +18%",
+      "achievement4": "Defined short drama quality standards covering 10+ scenarios, compliance rate +20%"
+    },
+    "shanghai_gov": {
+      "company": "Shanghai Municipal Government Information Office",
+      "role": "Intern",
+      "period": "2025.02 - 2025.08",
+      "description": "Participated in government press releases and media communication, assisting in planning and executing major press events.",
+      "achievement1": "Assisted in organizing 10+ press conferences, drafting press releases and Q&As",
+      "achievement2": "Participated in city image promotional video planning, covering mainstream media platforms",
+      "achievement3": "Monitored public opinion, output daily/weekly reports to support decision making"
+    },
+    "teaching": {
+      "company": "Gansu Teaching Support",
+      "role": "Volunteer Teacher",
+      "period": "2023.09 - 2024.09",
+      "description": "Dedicated to western education, responsible for rural primary school teaching and campus culture construction.",
+      "achievement1": "Taught Chinese/English, class average score increased by 15 points",
+      "achievement2": "Initiated 'Rural Reading Plan', raised 2000+ books",
+      "achievement3": "Organized campus culture festival, enriching students' extracurricular life"
+    }
   },
   "projects": {
     "section_title": "Selected Works",

@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Hero from "./components/Hero";
+import Experience from "./components/Experience";
 import { useTranslation } from "react-i18next";
 
 function App() {
@@ -16,33 +17,32 @@ function App() {
         {/* Section 1: Hero */}
         <Hero />
 
-        {/* Section 2: About */}
-        <Section id="about" className="bg-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center w-full max-w-6xl mx-auto">
-            <div className="space-y-6">
-              <h2 className="text-sm font-bold tracking-widest uppercase text-slate-500">
-                {t('about.section_title')}
-              </h2>
-              <h3 className="text-4xl md:text-6xl font-bold leading-tight whitespace-pre-line text-slate-900">
-                {t('about.main_heading').replace(/\. /g, '.\n')}
-              </h3>
-            </div>
-            <div className="text-lg md:text-xl text-slate-600 font-light space-y-6 leading-relaxed">
-              <p>
-                {t('about.description1')}
-              </p>
-              <p>
-                {t('about.description2')}
-              </p>
-            </div>
-          </div>
-        </Section>
+        {/* Section 2: Experience - ByteDance */}
+        <Experience
+          id="experience-bytedance"
+          dataKey="byte_dance"
+          className="bg-white"
+        />
 
-        {/* Section 3: Projects */}
+        {/* Section 3: Experience - Shanghai Gov */}
+        <Experience
+          id="experience-shanghai"
+          dataKey="shanghai_gov"
+          className="bg-slate-50"
+        />
+
+        {/* Section 4: Experience - Teaching */}
+        <Experience
+          id="experience-teaching"
+          dataKey="teaching"
+          className="bg-white"
+        />
+
+        {/* Section 5: Projects */}
         <Section id="projects" className="bg-slate-50">
           <div className="w-full max-w-6xl mx-auto">
             <h2 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-12">
-              {t('projects.section_title')}
+              {t("projects.section_title")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[1, 2, 3].map((item) => (
@@ -52,14 +52,14 @@ function App() {
                 >
                   <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity">
                     <span className="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-medium">
-                      {t('projects.tag')}
+                      {t("projects.tag")}
                     </span>
                   </div>
                   <h4 className="text-2xl font-bold mb-2 text-slate-900">
-                    {t('projects.item_title', { number: item })}
+                    {t("projects.item_title", { number: item })}
                   </h4>
                   <p className="text-slate-500 text-sm">
-                    {t('projects.item_desc')}
+                    {t("projects.item_desc")}
                   </p>
                 </div>
               ))}
@@ -71,10 +71,10 @@ function App() {
         <Section id="contact" className="bg-white">
           <div className="flex flex-col items-center text-center space-y-12 max-w-4xl mx-auto">
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900">
-              {t('contact.title')}
+              {t("contact.title")}
             </h2>
             <p className="text-xl text-slate-500 max-w-xl">
-              {t('contact.subtitle')}
+              {t("contact.subtitle")}
             </p>
             <a
               href="mailto:contact@example.com"

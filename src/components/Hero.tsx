@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
 import { ArrowDown, Play, Pause, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
