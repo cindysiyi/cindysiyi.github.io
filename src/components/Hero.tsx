@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
-import { ArrowDown, Play, Pause } from "lucide-react";
+import { ArrowDown, Play, Pause, Code, Brain, Rocket } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Section from "./Section";
 import { config } from "../config";
@@ -15,51 +15,48 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <Section
-      id="home"
-      className="bg-gradient-to-br from-slate-50 via-white to-slate-100"
-    >
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl mx-auto py-12 md:py-0">
+    <Section id="home" className="bg-white overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto py-12 md:py-0 px-4 md:px-8">
         {/* Left Side: Manifesto & Audio */}
-        <div className="flex flex-col items-start space-y-8 max-w-2xl z-10">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-slate-900">
+        <div className="flex flex-col items-start space-y-8 max-w-2xl z-20">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-slate-900">
             {t("hero.title_line1")}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              {t("hero.title_line2")}
-            </span>
+            <span className="text-blue-600">{t("hero.title_line2")}</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-500 max-w-xl font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 max-w-lg font-medium leading-relaxed">
             {t("hero.subtitle")}
           </p>
 
-          {/* Audio Player Placeholder */}
-          <div className="flex items-center space-x-4 bg-white p-2 pr-6 rounded-full shadow-lg border border-slate-100 hover:shadow-xl transition-shadow duration-300">
+          {/* Audio Player - Styled as a primary action button */}
+          <div className="flex items-center space-x-4 bg-white p-2 pr-6 rounded-full shadow-xl border border-blue-100 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
             <button
               onClick={togglePlay}
-              className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+              className="flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
               aria-label={
                 isPlaying ? t("hero.pause_intro") : t("hero.play_intro")
               }
             >
               {isPlaying ? (
-                <Pause className="w-5 h-5" />
+                <Pause className="w-6 h-6 fill-current" />
               ) : (
-                <Play className="w-5 h-5 ml-1" />
+                <Play className="w-6 h-6 ml-1 fill-current" />
               )}
             </button>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-slate-900">
+              <span className="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                 {isPlaying ? "Playing..." : "Intro.mp3"}
               </span>
-              <div className="flex items-center space-x-1 h-3 mt-1">
-                {[...Array(12)].map((_, i) => (
+              <div className="flex items-center space-x-1 h-4 mt-1">
+                {[...Array(16)].map((_, i) => (
                   <div
                     key={i}
-                    className={`w-1 rounded-full transition-all duration-300 ${isPlaying ? "animate-pulse bg-blue-500" : "bg-slate-300"}`}
+                    className={`w-1 rounded-full transition-all duration-300 ${isPlaying ? "animate-pulse bg-blue-500" : "bg-blue-200"}`}
                     style={{
-                      height: isPlaying ? `${Math.random() * 100}%` : "40%",
+                      height: isPlaying
+                        ? `${Math.random() * 100}%`
+                        : `${30 + Math.sin(i) * 20}%`,
                     }}
                   ></div>
                 ))}
@@ -68,40 +65,62 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: Photo - Tech Fusion Style */}
-        <div className="mt-12 md:mt-0 relative w-full max-w-md aspect-[4/5] md:aspect-square group [perspective:1000px] flex items-center justify-center">
-          {/* Main 3D Container */}
-          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(10deg)_rotateX(5deg)]">
-            {/* Deep Background - Large Fusion Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-cyan-400/20 rounded-full blur-[80px] [transform:translateZ(-50px)]"></div>
+        {/* Right Side: Photo - HomeworkAI Style Composition */}
+        <div className="mt-16 md:mt-0 relative w-full max-w-lg aspect-[4/5] md:aspect-square flex items-center justify-center">
+          {/* Background Organic Shapes */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50/80 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute top-10 right-0 w-64 h-64 bg-blue-100/50 rounded-full blur-2xl -z-10 animate-blob"></div>
+          <div className="absolute bottom-0 left-10 w-48 h-48 bg-purple-100/50 rounded-full blur-2xl -z-10 animate-blob animation-delay-2000"></div>
 
-            {/* Tech Ring 1 - Outer Dashed Circle */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-[95%] border border-dashed border-slate-300/40 rounded-full [transform:translateZ(-30px)] animate-[spin_60s_linear_infinite]"></div>
+          {/* Floating Elements Container */}
+          <div className="relative w-full h-full">
+            {/* Floating Card 1: Math/Code (Top Left) */}
+            <div className="absolute top-[10%] -left-[5%] md:-left-[10%] bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10 animate-float">
+              <div className="flex items-center gap-2 mb-2">
+                <Code className="w-5 h-5 text-blue-500" />
+                <span className="text-xs font-bold text-slate-400">PRD.md</span>
+              </div>
+              <div className="space-y-1">
+                <div className="w-24 h-2 bg-slate-200 rounded-full"></div>
+                <div className="w-16 h-2 bg-slate-200 rounded-full"></div>
+                <div className="w-20 h-2 bg-blue-100 rounded-full"></div>
+              </div>
+            </div>
 
-            {/* Tech Ring 2 - Inner Gradient Ring */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border-2 border-transparent bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full [mask-image:linear-gradient(white,transparent)] [transform:translateZ(-20px)]"></div>
+            {/* Floating Card 2: AI Icon (Top Right) */}
+            <div className="absolute top-[5%] right-[5%] bg-white p-3 rounded-2xl shadow-lg border border-blue-50 transform rotate-12 hover:rotate-6 transition-transform duration-500 z-0 animate-float animation-delay-1000">
+              <Brain className="w-8 h-8 text-purple-500" />
+            </div>
 
-            {/* Floating Tech Elements (Fusion Blocks) */}
-            {/* Top Right Block */}
-            <div className="absolute top-10 right-4 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-cyan-300/10 backdrop-blur-sm rounded-2xl border border-white/20 [transform:translateZ(10px)_rotate(12deg)] group-hover:[transform:translateZ(30px)_rotate(20deg)] transition-all duration-500 shadow-lg"></div>
+            {/* Floating Tag: "AI AGENT" (Bottom Left - The Yellow Pill) */}
+            <div className="absolute bottom-[20%] -left-[5%] bg-yellow-400 text-white font-black text-sm px-6 py-2 rounded-lg transform -rotate-12 shadow-lg z-20 hover:scale-110 transition-transform duration-300 animate-float animation-delay-2000">
+              AI AGENT
+            </div>
 
-            {/* Bottom Left Block */}
-            <div className="absolute bottom-12 left-4 w-28 h-28 bg-gradient-to-tr from-purple-400/10 to-pink-300/10 backdrop-blur-sm rounded-full border border-white/20 [transform:translateZ(5px)] group-hover:[transform:translateZ(25px)] transition-all duration-500 shadow-lg"></div>
+            {/* Floating Element: Rocket (Bottom Right) */}
+            <div className="absolute bottom-[15%] right-[0%] bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-xl border border-white/50 z-20 animate-bounce">
+              <Rocket className="w-6 h-6 text-orange-500" />
+            </div>
 
-            {/* Small Floating Particles */}
-            <div className="absolute top-1/4 left-10 w-4 h-4 bg-blue-400 rounded-full blur-[2px] animate-pulse [transform:translateZ(40px)]"></div>
-            <div className="absolute bottom-1/3 right-10 w-3 h-3 bg-purple-400 rounded-full blur-[2px] animate-pulse delay-700 [transform:translateZ(30px)]"></div>
+            {/* Background Decorative Formulas/Text */}
+            <div className="absolute top-1/4 left-10 text-blue-200 font-mono text-sm transform -rotate-12 select-none -z-10">
+              user_needs = true
+            </div>
+            <div className="absolute bottom-1/3 right-10 text-purple-200 font-mono text-sm transform rotate-6 select-none -z-10">
+              agent.execute()
+            </div>
 
-            {/* Front Layer - Image */}
-            <div className="absolute inset-0 flex items-end justify-center transition-transform duration-500 [transform:translateZ(50px)] group-hover:[transform:translateZ(80px)_scale(1.05)]">
+            {/* Main Image */}
+            <div className="relative z-10 w-full h-full flex items-end justify-center">
               <img
                 src={config.heroImg}
                 alt="Profile"
-                className="w-full h-full object-contain object-bottom drop-shadow-2xl"
+                className="w-full h-full object-contain object-bottom drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
                 style={{
-                  objectPosition: "top", // 靠上
-                  transform: "scale(1.3)", // 放大 1.3 倍
-                  transformOrigin: "center top", // 从顶部中心放大
+                  maskImage:
+                    "linear-gradient(to bottom, black 90%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, black 90%, transparent 100%)",
                 }}
               />
             </div>
