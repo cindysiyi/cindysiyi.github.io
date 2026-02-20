@@ -1,7 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import Section from './Section';
-import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import Section from "./Section";
+import { Briefcase, Calendar } from "lucide-react";
 
 interface ExperienceProps {
   id: string;
@@ -10,7 +10,12 @@ interface ExperienceProps {
   imagePlaceholder?: boolean;
 }
 
-const Experience: React.FC<ExperienceProps> = ({ id, dataKey, className = '', imagePlaceholder = true }) => {
+const Experience: React.FC<ExperienceProps> = ({
+  id,
+  dataKey,
+  className = "",
+  imagePlaceholder = true,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -21,7 +26,7 @@ const Experience: React.FC<ExperienceProps> = ({ id, dataKey, className = '', im
           <div className="flex items-center space-x-2 text-purple-600">
             <Briefcase className="w-5 h-5" />
             <span className="text-sm font-bold tracking-widest uppercase">
-              {t('experience.section_title')}
+              {t("experience.section_title")}
             </span>
           </div>
 
@@ -48,20 +53,20 @@ const Experience: React.FC<ExperienceProps> = ({ id, dataKey, className = '', im
               const content = t(key);
               // If the translation key returns the key itself (or is empty), it means no translation exists
               if (content === key || !content) return null;
-              
+
               return (
-                <li key={num} className="flex items-start space-x-3 text-slate-600">
+                <li
+                  key={num}
+                  className="flex items-start space-x-3 text-slate-600"
+                >
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                  <span className="text-sm md:text-base leading-relaxed">{content}</span>
+                  <span className="text-sm md:text-base leading-relaxed">
+                    {content}
+                  </span>
                 </li>
               );
             })}
           </ul>
-
-          <button className="group flex items-center space-x-2 text-slate-900 font-bold hover:text-purple-600 transition-colors pt-4">
-            <span>{t('experience.read_more')}</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
 
         {/* Right Content - Image Placeholder */}
@@ -73,7 +78,9 @@ const Experience: React.FC<ExperienceProps> = ({ id, dataKey, className = '', im
                 <div className="w-16 h-16 border-2 border-slate-400 border-dashed rounded-lg mb-4 flex items-center justify-center">
                   <span className="text-xs">IMG</span>
                 </div>
-                <span className="text-xs uppercase tracking-widest">Work / Result</span>
+                <span className="text-xs uppercase tracking-widest">
+                  Work / Result
+                </span>
               </div>
             </div>
           )}
