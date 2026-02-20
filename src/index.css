@@ -105,6 +105,49 @@
     background: radial-gradient(circle at center, rgba(2, 6, 23, 0.1) 0%, rgba(2, 6, 23, 0.85) 70%);
   }
 
+  .hero-photo-halo {
+    @apply absolute rounded-full blur-3xl opacity-100;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), transparent 72%);
+    box-shadow: 0 0 120px rgba(255, 255, 255, 0.35);
+  }
+
+  .hero-code-text {
+    @apply absolute font-mono text-sm md:text-base tracking-wider text-cyan-100/65 select-none whitespace-nowrap;
+    text-shadow: 0 0 22px rgba(34, 211, 238, 0.45);
+  }
+
+  .hero-code-float {
+    animation: codeFloat 12s ease-in-out infinite;
+  }
+
+  .hero-code-float-1 {
+    animation-delay: 0s;
+  }
+
+  .hero-code-float-2 {
+    animation-delay: 1.2s;
+  }
+
+  .hero-code-float-3 {
+    animation-delay: 2.4s;
+  }
+
+  .hero-code-float-4 {
+    animation-delay: 3.6s;
+  }
+
+  .hero-code-float-5 {
+    animation-delay: 4.8s;
+  }
+
+  .hero-code-float-6 {
+    animation-delay: 6s;
+  }
+
+  .hero-code-float-7 {
+    animation-delay: 7.2s;
+  }
+
   /* Keyframes definitions */
   @keyframes blob {
     0% {
@@ -170,6 +213,20 @@
 
     50% {
       transform: scale(1.08);
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes codeFloat {
+
+    0%,
+    100% {
+      transform: translate3d(0px, 0px, 0);
+      opacity: 0.6;
+    }
+
+    50% {
+      transform: translate3d(18px, -28px, 0);
       opacity: 0.9;
     }
   }

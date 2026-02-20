@@ -51,6 +51,29 @@ const Hero: React.FC = () => {
       <div className="hero-glow hero-glow-left pointer-events-none -z-20"></div>
       <div className="hero-glow hero-glow-right pointer-events-none -z-20"></div>
       <div className="hero-vignette pointer-events-none absolute inset-0 -z-10"></div>
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="hero-code-text top-[6%] left-[8%] hero-code-float hero-code-float-1 -rotate-6">
+          user_needs = true
+        </div>
+        <div className="hero-code-text top-[18%] right-[12%] hero-code-float hero-code-float-2 rotate-6">
+          agent.execute()
+        </div>
+        <div className="hero-code-text top-[30%] left-[12%] hero-code-float hero-code-float-3 -rotate-3">
+          signal.boost(0.92)
+        </div>
+        <div className="hero-code-text top-[40%] right-[14%] hero-code-float hero-code-float-4 rotate-3">
+          context.sync()
+        </div>
+        <div className="hero-code-text top-[58%] left-[10%] hero-code-float hero-code-float-5 -rotate-2">
+          intent.locked = 1
+        </div>
+        <div className="hero-code-text top-[66%] right-[12%] hero-code-float hero-code-float-6 rotate-2">
+          pipeline.ready()
+        </div>
+        <div className="hero-code-text bottom-[12%] left-[36%] hero-code-float hero-code-float-7 -rotate-6">
+          latency = 18ms
+        </div>
+      </div>
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="particle-3d w-3 h-3 top-[20%] left-[10%] animate-[float_8s_ease-in-out_infinite]"></div>
         <div className="particle-3d w-4 h-4 top-[60%] left-[5%] animate-[float_12s_ease-in-out_infinite_1s]"></div>
@@ -86,9 +109,6 @@ const Hero: React.FC = () => {
               )}
             </button>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
-                {isPlaying ? "Playing..." : "Intro.mp3"}
-              </span>
               <div className="flex items-center space-x-1 h-4 mt-1">
                 {[...Array(16)].map((_, i) => (
                   <div
@@ -138,20 +158,14 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Floating Element: Rocket (Bottom Right) */}
-            <div className="absolute bottom-[15%] right-[0%] bg-white/10 backdrop-blur-xl p-3 rounded-full shadow-xl border border-white/10 z-20 animate-bounce">
+            <div className="absolute bottom-[15%] right-[0%] bg-white/10 backdrop-blur-xl p-3 rounded-full shadow-xl border border-white/10 z-20">
               <Rocket className="w-6 h-6 text-amber-300" />
             </div>
 
             {/* Background Decorative Formulas/Text */}
-            <div className="absolute top-1/4 left-10 text-cyan-200/60 font-mono text-sm transform -rotate-12 select-none -z-10">
-              user_needs = true
-            </div>
-            <div className="absolute bottom-1/3 right-10 text-indigo-200/60 font-mono text-sm transform rotate-6 select-none -z-10">
-              agent.execute()
-            </div>
-
             {/* Main Image */}
             <div className="relative z-10 w-full h-full flex items-end justify-center">
+              <div className="hero-photo-halo w-[95%] h-[95%] -z-10 left-1/2 top-[22%] -translate-x-1/2"></div>
               <img
                 src={config.heroImg}
                 alt="Profile"
