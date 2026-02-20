@@ -8,13 +8,24 @@ import { useTranslation } from "react-i18next";
 
 function App() {
   const { t } = useTranslation();
+  const [showHeader, setShowHeader] = React.useState(false);
+  const handleScroll = React.useCallback(
+    (event: React.UIEvent<HTMLElement>) => {
+      const target = event.currentTarget;
+      setShowHeader(target.scrollTop > 8);
+    },
+    [],
+  );
 
   return (
     <div className="bg-slate-50 text-slate-900 selection:bg-purple-100 selection:text-purple-900">
-      <Header />
+      {showHeader && <Header />}
 
       {/* Main Scroll Container */}
-      <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar">
+      <main
+        className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar"
+        onScroll={handleScroll}
+      >
         {/* Section 1: Hero */}
         <Hero />
 

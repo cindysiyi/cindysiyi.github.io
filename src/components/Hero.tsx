@@ -40,16 +40,17 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <Section id="home" className="hero-container">
+    <Section id="home" className="hero-container" fullBleed>
       <audio
         ref={audioRef}
         src={config.audio}
         onEnded={() => setIsPlaying(false)}
       />
-      {/* Breathing Gradient Background */}
-      <div className="breathing-gradient pointer-events-none -z-20"></div>
-
-      {/* 3D Floating Particles */}
+      <div className="breathing-gradient pointer-events-none absolute inset-0 -z-30"></div>
+      <div className="hero-grid pointer-events-none absolute inset-0 -z-20"></div>
+      <div className="hero-glow hero-glow-left pointer-events-none -z-20"></div>
+      <div className="hero-glow hero-glow-right pointer-events-none -z-20"></div>
+      <div className="hero-vignette pointer-events-none absolute inset-0 -z-10"></div>
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="particle-3d w-3 h-3 top-[20%] left-[10%] animate-[float_8s_ease-in-out_infinite]"></div>
         <div className="particle-3d w-4 h-4 top-[60%] left-[5%] animate-[float_12s_ease-in-out_infinite_1s]"></div>
@@ -85,14 +86,14 @@ const Hero: React.FC = () => {
               )}
             </button>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+              <span className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
                 {isPlaying ? "Playing..." : "Intro.mp3"}
               </span>
               <div className="flex items-center space-x-1 h-4 mt-1">
                 {[...Array(16)].map((_, i) => (
                   <div
                     key={i}
-                    className={`w-1 rounded-full transition-all duration-300 ${isPlaying ? "animate-pulse bg-blue-500" : "bg-blue-200"}`}
+                    className={`w-1 rounded-full transition-all duration-300 ${isPlaying ? "animate-pulse bg-cyan-400" : "bg-slate-600/70"}`}
                     style={{
                       height: isPlaying
                         ? `${Math.random() * 100}%`
@@ -107,29 +108,28 @@ const Hero: React.FC = () => {
 
         {/* Right Side: Photo - HomeworkAI Style Composition */}
         <div className="mt-16 md:mt-0 relative w-full max-w-lg aspect-[4/5] md:aspect-square flex items-center justify-center">
-          {/* Background Organic Shapes */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50/80 rounded-full blur-3xl -z-10"></div>
-          <div className="absolute top-10 right-0 w-64 h-64 bg-blue-100/50 rounded-full blur-2xl -z-10 animate-blob"></div>
-          <div className="absolute bottom-0 left-10 w-48 h-48 bg-purple-100/50 rounded-full blur-2xl -z-10 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-cyan-500/10 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute top-10 right-0 w-64 h-64 bg-indigo-500/15 rounded-full blur-2xl -z-10 animate-blob"></div>
+          <div className="absolute bottom-0 left-10 w-48 h-48 bg-fuchsia-500/10 rounded-full blur-2xl -z-10 animate-blob animation-delay-2000"></div>
 
           {/* Floating Elements Container */}
           <div className="relative w-full h-full">
             {/* Floating Card 1: Math/Code (Top Left) */}
             <div className="absolute top-[10%] -left-[5%] md:-left-[10%] float-card-glass transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10 animate-float">
               <div className="flex items-center gap-2 mb-2">
-                <Code className="w-5 h-5 text-blue-500" />
-                <span className="text-xs font-bold text-slate-400">PRD.md</span>
+                <Code className="w-5 h-5 text-cyan-300" />
+                <span className="text-xs font-bold text-slate-300">PRD.md</span>
               </div>
               <div className="space-y-1">
-                <div className="w-24 h-2 bg-slate-200 rounded-full"></div>
-                <div className="w-16 h-2 bg-slate-200 rounded-full"></div>
-                <div className="w-20 h-2 bg-blue-100 rounded-full"></div>
+                <div className="w-24 h-2 bg-white/20 rounded-full"></div>
+                <div className="w-16 h-2 bg-white/20 rounded-full"></div>
+                <div className="w-20 h-2 bg-cyan-400/40 rounded-full"></div>
               </div>
             </div>
 
             {/* Floating Card 2: AI Icon (Top Right) */}
-            <div className="absolute top-[5%] right-[5%] bg-white p-3 rounded-2xl shadow-lg border border-blue-50 transform rotate-12 hover:rotate-6 transition-transform duration-500 z-0 animate-float animation-delay-1000">
-              <Brain className="w-8 h-8 text-purple-500" />
+            <div className="absolute top-[5%] right-[5%] bg-white/10 p-3 rounded-2xl shadow-lg border border-white/10 transform rotate-12 hover:rotate-6 transition-transform duration-500 z-0 animate-float animation-delay-1000 backdrop-blur-xl">
+              <Brain className="w-8 h-8 text-indigo-300" />
             </div>
 
             {/* Floating Tag: "AI AGENT" (Bottom Left - The Yellow Pill) */}
@@ -138,15 +138,15 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Floating Element: Rocket (Bottom Right) */}
-            <div className="absolute bottom-[15%] right-[0%] bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-xl border border-white/50 z-20 animate-bounce">
-              <Rocket className="w-6 h-6 text-orange-500" />
+            <div className="absolute bottom-[15%] right-[0%] bg-white/10 backdrop-blur-xl p-3 rounded-full shadow-xl border border-white/10 z-20 animate-bounce">
+              <Rocket className="w-6 h-6 text-amber-300" />
             </div>
 
             {/* Background Decorative Formulas/Text */}
-            <div className="absolute top-1/4 left-10 text-blue-200 font-mono text-sm transform -rotate-12 select-none -z-10">
+            <div className="absolute top-1/4 left-10 text-cyan-200/60 font-mono text-sm transform -rotate-12 select-none -z-10">
               user_needs = true
             </div>
-            <div className="absolute bottom-1/3 right-10 text-purple-200 font-mono text-sm transform rotate-6 select-none -z-10">
+            <div className="absolute bottom-1/3 right-10 text-indigo-200/60 font-mono text-sm transform rotate-6 select-none -z-10">
               agent.execute()
             </div>
 
@@ -170,7 +170,7 @@ const Hero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-slate-400" />
+        <ArrowDown className="w-6 h-6 text-cyan-200/70" />
       </div>
     </Section>
   );
