@@ -58,16 +58,16 @@ const Hero: React.FC = () => {
         <div className="hero-code-text top-[18%] right-[12%] hero-code-float hero-code-float-2 rotate-6">
           agent.execute()
         </div>
-        <div className="hero-code-text top-[30%] left-[12%] hero-code-float hero-code-float-3 -rotate-3">
+        <div className="hero-code-text top-[20%] left-[12%] hero-code-float hero-code-float-3 -rotate-3">
           signal.boost(0.92)
         </div>
         <div className="hero-code-text top-[40%] right-[14%] hero-code-float hero-code-float-4 rotate-3">
           context.sync()
         </div>
-        <div className="hero-code-text top-[58%] left-[10%] hero-code-float hero-code-float-5 -rotate-2">
+        <div className="hero-code-text top-[78%] left-[10%] hero-code-float hero-code-float-5 -rotate-2">
           intent.locked = 1
         </div>
-        <div className="hero-code-text top-[66%] right-[12%] hero-code-float hero-code-float-6 rotate-2">
+        <div className="hero-code-text top-[66%] right-[5%] hero-code-float hero-code-float-6 rotate-2">
           pipeline.ready()
         </div>
         <div className="hero-code-text bottom-[12%] left-[36%] hero-code-float hero-code-float-7 -rotate-6">
@@ -109,6 +109,9 @@ const Hero: React.FC = () => {
               )}
             </button>
             <div className="flex flex-col">
+              {/* <span className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
+                {isPlaying ? "Playing..." : "Intro.mp3"}
+              </span> */}
               <div className="flex items-center space-x-1 h-4 mt-1">
                 {[...Array(16)].map((_, i) => (
                   <div
