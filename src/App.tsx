@@ -2,7 +2,11 @@ import React from "react";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Hero from "./components/Hero";
-import Experience from "./components/Experience";
+import {
+  ByteDanceExperience,
+  ShanghaiGovExperience,
+  TeachingExperience,
+} from "./components/Experience";
 import ProjectAgent from "./components/ProjectAgent";
 import { useTranslation } from "react-i18next";
 
@@ -12,7 +16,12 @@ function App() {
   const handleScroll = React.useCallback(
     (event: React.UIEvent<HTMLElement>) => {
       const target = event.currentTarget;
-      setShowHeader(target.scrollTop > 8);
+      const teachingSection = document.getElementById("experience-teaching");
+      const isTeachingVisible =
+        teachingSection &&
+        teachingSection.getBoundingClientRect().top <= 64 &&
+        teachingSection.getBoundingClientRect().bottom >= 64;
+      setShowHeader(target.scrollTop > 8 && !isTeachingVisible);
     },
     [],
   );
@@ -30,25 +39,16 @@ function App() {
         <Hero />
 
         {/* Section 2: Experience - ByteDance */}
-        <Experience
-          id="experience-bytedance"
-          dataKey="byte_dance"
-          className="bg-white"
-        />
+        <ByteDanceExperience id="experience-bytedance" className="bg-white" />
 
         {/* Section 3: Experience - Shanghai Gov */}
-        <Experience
+        <ShanghaiGovExperience
           id="experience-shanghai"
-          dataKey="shanghai_gov"
           className="bg-slate-50"
         />
 
         {/* Section 4: Experience - Teaching */}
-        <Experience
-          id="experience-teaching"
-          dataKey="teaching"
-          className="bg-white"
-        />
+        <TeachingExperience id="experience-teaching" className="bg-white" />
 
         {/* Section 5: AI Agent Project */}
         <ProjectAgent />
