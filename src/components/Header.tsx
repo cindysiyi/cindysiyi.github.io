@@ -22,22 +22,22 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center text-white mix-blend-difference">
+    <header className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center text-slate-900 bg-white/80 backdrop-blur-sm shadow-sm transition-all duration-300">
       {/* Left Side: Contact Info */}
       <div className="flex items-center space-x-6">
-        <div className="flex items-center space-x-2 group cursor-pointer">
+        <div className="flex items-center space-x-2 group cursor-pointer text-slate-600 hover:text-slate-900 transition-colors">
           <MessageCircle className="w-5 h-5" />
-          <span className="text-sm font-light tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="text-sm font-medium tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {t("header.wechat")}
           </span>
         </div>
 
-        <div className="h-4 w-[1px] bg-white/30"></div>
+        <div className="h-4 w-[1px] bg-slate-300"></div>
 
-        <div className="flex items-center space-x-4 text-sm font-light tracking-wide">
+        <div className="flex items-center space-x-4 text-sm font-medium tracking-wide text-slate-600">
           <a
             href="mailto:contact@example.com"
-            className="hover:opacity-70 transition-opacity"
+            className="hover:text-purple-600 transition-colors"
           >
             contact@example.com
           </a>
@@ -46,21 +46,21 @@ const Header: React.FC = () => {
 
       {/* Right Side: Navigation */}
       <nav className="flex items-center gap-8">
-        <ul className="flex space-x-8 text-sm font-medium tracking-widest uppercase">
+        <ul className="flex space-x-8 text-sm font-bold tracking-widest uppercase text-slate-600">
           <li>
-            <a href="#home" className="hover:text-gray-300 transition-colors">
+            <a href="#home" className="hover:text-purple-600 transition-colors">
               {t("header.home")}
             </a>
           </li>
           <li>
-            <a href="#about" className="hover:text-gray-300 transition-colors">
+            <a href="#about" className="hover:text-purple-600 transition-colors">
               {t("header.about")}
             </a>
           </li>
           <li>
             <a
               href="#projects"
-              className="hover:text-gray-300 transition-colors"
+              className="hover:text-purple-600 transition-colors"
             >
               {t("header.projects")}
             </a>
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
           <li>
             <a
               href="#contact"
-              className="hover:text-gray-300 transition-colors"
+              className="hover:text-purple-600 transition-colors"
             >
               {t("header.contact")}
             </a>
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
         {/* Language Switcher */}
         <button
           onClick={toggleLanguage}
-          className="flex items-center gap-2 hover:opacity-70 transition-opacity uppercase text-sm tracking-widest"
+          className="flex items-center gap-2 hover:text-purple-600 transition-colors uppercase text-sm tracking-widest font-bold text-slate-900"
           aria-label="Toggle language"
         >
           <Globe className="w-4 h-4" />

@@ -9,7 +9,9 @@
   "hero": {
     "title_line1": "AI 产品",
     "title_line2": "经理",
-    "subtitle": "连接人类需求与人工智能的桥梁。为下一代技术打造直观体验。"
+    "subtitle": "连接人类需求与人工智能的桥梁。为下一代技术打造直观体验。",
+    "play_intro": "播放介绍",
+    "pause_intro": "暂停播放"
   },
   "about": {
     "section_title": "关于我",

@@ -9,7 +9,9 @@
   "hero": {
     "title_line1": "AI PRODUCT",
     "title_line2": "MANAGER",
-    "subtitle": "Bridging the gap between human needs and artificial intelligence. Crafting intuitive experiences for the next generation of technology."
+    "subtitle": "Bridging the gap between human needs and artificial intelligence. Crafting intuitive experiences for the next generation of technology.",
+    "play_intro": "Play Intro",
+    "pause_intro": "Pause Intro"
   },
   "about": {
     "section_title": "About Me",
