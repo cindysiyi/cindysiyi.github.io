@@ -9,6 +9,177 @@ import {
 } from "./components/Experience";
 import ProjectAgent from "./components/ProjectAgent";
 import { useTranslation } from "react-i18next";
+import { shixiLineList } from "./config";
+
+const TimelineSection: React.FC = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const activeIndexRef = React.useRef(0);
+  const sectionRef = React.useRef<HTMLDivElement | null>(null);
+  const lastWheelTimeRef = React.useRef(0);
+  const lockActiveRef = React.useRef(false);
+  const lastDirectionRef = React.useRef(0);
+
+  React.useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  React.useEffect(() => {
+    const main = document.querySelector("main");
+    const section = sectionRef.current;
+    if (!main || !section || shixiLineList.length === 0) {
+      return;
+    }
+
+    const updateLock = () => {
+      const rect = section.getBoundingClientRect();
+      const headerOffset = 88;
+      const lastIndex = shixiLineList.length - 1;
+      const atStart = activeIndexRef.current === 0;
+      const atEnd = activeIndexRef.current === lastIndex;
+      const direction = lastDirectionRef.current;
+      const allowLock =
+        direction === 0 ||
+        !((atEnd && direction > 0) || (atStart && direction < 0));
+      const isLocked =
+        allowLock && rect.top <= headerOffset && rect.bottom >= headerOffset;
+      lockActiveRef.current = isLocked;
+      if (isLocked && main instanceof HTMLElement) {
+        if (Math.abs(rect.top) > 1) {
+          main.scrollTop += rect.top - headerOffset;
+        }
+      }
+    };
+
+    const onScroll = () => {
+      updateLock();
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      const direction = event.deltaY > 0 ? 1 : -1;
+      lastDirectionRef.current = direction;
+      updateLock();
+      if (!lockActiveRef.current) {
+        return;
+      }
+      const lastIndex = shixiLineList.length - 1;
+      const currentIndex = activeIndexRef.current;
+      if (
+        (direction > 0 && currentIndex >= lastIndex) ||
+        (direction < 0 && currentIndex <= 0)
+      ) {
+        lockActiveRef.current = false;
+        return;
+      }
+      const canStep =
+        (direction > 0 && currentIndex < lastIndex) ||
+        (direction < 0 && currentIndex > 0);
+
+      if (!canStep) {
+        lockActiveRef.current = false;
+        return;
+      }
+
+      event.preventDefault();
+      const now = Date.now();
+      if (now - lastWheelTimeRef.current < 320) {
+        return;
+      }
+      lastWheelTimeRef.current = now;
+
+      const nextIndex = Math.max(
+        0,
+        Math.min(lastIndex, currentIndex + direction),
+      );
+      activeIndexRef.current = nextIndex;
+      setActiveIndex(nextIndex);
+      if (nextIndex === 0 || nextIndex === lastIndex) {
+        lockActiveRef.current = false;
+      }
+    };
+
+    updateLock();
+    main.addEventListener("scroll", onScroll, { passive: true });
+    main.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      main.removeEventListener("scroll", onScroll);
+      main.removeEventListener("wheel", onWheel);
+    };
+  }, []);
+
+  const lineHeights = [72, 110, 84, 128, 96, 112];
+  const lineDirections = ["up", "down", "down", "up", "down", "up"];
+  const nodeColors = [
+    "bg-cyan-500",
+    "bg-purple-500",
+    "bg-amber-500",
+    "bg-emerald-500",
+    "bg-rose-500",
+    "bg-indigo-500",
+  ];
+  const lineColors = [
+    "bg-cyan-400",
+    "bg-purple-400",
+    "bg-amber-400",
+    "bg-emerald-400",
+    "bg-rose-400",
+    "bg-indigo-400",
+  ];
+
+  return (
+    <section id="experience-timeline" className="w-full bg-white snap-start">
+      <div
+        ref={sectionRef}
+        className="relative mx-auto w-full max-w-6xl px-8 pt-80 pb-40"
+      >
+        <div className="relative">
+          <div className="absolute left-0 right-0 top-1/2 h-px bg-slate-200"></div>
+          <div className="relative flex items-center justify-between gap-4">
+            {shixiLineList.map((item, index) => {
+              const isLit = index <= activeIndex;
+              const lineHeight = lineHeights[index % lineHeights.length];
+              const direction = lineDirections[index % lineDirections.length];
+              const nodeColor = nodeColors[index % nodeColors.length];
+              const lineColor = lineColors[index % lineColors.length];
+              return (
+                <div
+                  key={`${item.date}-${item.title}`}
+                  className="relative flex flex-col items-center"
+                >
+                  <div
+                    className={`absolute left-1/2 w-0.5 -translate-x-1/2 transition-all duration-500 ${isLit ? lineColor : "bg-slate-200"} ${direction === "up" ? "bottom-full" : "top-full"}`}
+                    style={{
+                      height: isLit ? `${lineHeight}px` : "0px",
+                    }}
+                  ></div>
+                  <span
+                    className={`h-3.5 w-3.5 rounded-full transition-all duration-500 ${isLit ? nodeColor : "bg-slate-300"}`}
+                  ></span>
+                  <div
+                    className={`absolute left-1/2 w-max -translate-x-1/2 transition-colors duration-500 ${isLit ? "text-slate-900" : "text-slate-400"}`}
+                    style={{
+                      top:
+                        direction === "up"
+                          ? "auto"
+                          : `calc(100% + ${lineHeight + 8}px)`,
+                      bottom:
+                        direction === "up"
+                          ? `calc(100% + ${lineHeight + 8}px)`
+                          : "auto",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    <div className="text-xs font-semibold">{item.date}</div>
+                    <div className="text-sm md:text-base">{item.title}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 function App() {
   const { t } = useTranslation();
@@ -35,9 +206,8 @@ function App() {
         className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar"
         onScroll={handleScroll}
       >
-        {/* Section 1: Hero */}
         <Hero />
-
+        <TimelineSection />
         {/* Section 2: Experience - ByteDance */}
         <ByteDanceExperience id="experience-bytedance" className="bg-white" />
 
