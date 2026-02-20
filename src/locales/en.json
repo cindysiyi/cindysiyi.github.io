@@ -56,7 +56,19 @@
     "section_title": "Selected Works",
     "item_title": "Project Name {{number}}",
     "item_desc": "Brief description of the project and the role played in its development.",
-    "tag": "AI / ML"
+    "tag": "AI / ML",
+    "agent": {
+      "title": "AI Consulting Agent Project",
+      "role": "Founder & Product Lead",
+      "description": "Starting with college entrance examination volunteer application, providing precise recommendations and personalized planning to help parents and students improve decision-making efficiency.",
+      "highlight1": "Rapid 0-to-1 Product Build: Self-taught Cursor programming tools and related technologies, applying them to actual product development in a short time",
+      "highlight2": "Innovative Voice Interaction: Built large model nodes + humanNode feedback loop via code, dynamically probing user preferences for more precise, human-centric AI recommendations",
+      "highlight3": "Exquisite Visual Reports: Delivered professional-grade volunteer planning reports post-consultation, embedding authoritative data + dynamic charts to highlight product value",
+      "highlight4": "Full-Process Product Leadership: Led the entire project from user pain point insight, market analysis to feature design and iterative optimization",
+      "highlight5": "Cutting-edge Tech Adaptability: Continuously explored and integrated frontier technologies during project execution",
+      "cta_case": "View Full Case",
+      "cta_demo": "Try Demo"
+    }
   },
   "contact": {
     "title": "Let's Connect",

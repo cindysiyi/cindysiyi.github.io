@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Section from "./components/Section";
 import Hero from "./components/Hero";
 import Experience from "./components/Experience";
+import ProjectAgent from "./components/ProjectAgent";
 import { useTranslation } from "react-i18next";
 
 function App() {
@@ -38,7 +39,10 @@ function App() {
           className="bg-white"
         />
 
-        {/* Section 5: Projects */}
+        {/* Section 5: AI Agent Project */}
+        <ProjectAgent />
+
+        {/* Section 6: Projects */}
         <Section id="projects" className="bg-slate-50">
           <div className="w-full max-w-6xl mx-auto">
             <h2 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-12">
