@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
-import { ArrowDown, Play, Pause, User } from "lucide-react";
+import { ArrowDown, Play, Pause } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Section from "./Section";
+import { config } from "../config";
 
 const Hero: React.FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const Hero: React.FC = () => {
       <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl mx-auto py-12 md:py-0">
         {/* Left Side: Manifesto & Audio */}
         <div className="flex flex-col items-start space-y-8 max-w-2xl z-10">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-slate-900">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-slate-900">
             {t("hero.title_line1")}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
@@ -29,7 +30,7 @@ const Hero: React.FC = () => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-slate-500 max-w-xl font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-500 max-w-xl font-light leading-relaxed">
             {t("hero.subtitle")}
           </p>
 
@@ -67,24 +68,43 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: Photo Placeholder */}
-        <div className="mt-12 md:mt-0 relative w-full max-w-md aspect-[4/5] md:aspect-square">
-          {/* Decorative Background Blob */}
-          <div className="absolute -top-10 -right-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div
-            className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"
-            style={{ animationDelay: "2s" }}
-          ></div>
+        {/* Right Side: Photo - Tech Fusion Style */}
+        <div className="mt-12 md:mt-0 relative w-full max-w-md aspect-[4/5] md:aspect-square group [perspective:1000px] flex items-center justify-center">
+          {/* Main 3D Container */}
+          <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(10deg)_rotateX(5deg)]">
+            {/* Deep Background - Large Fusion Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-cyan-400/20 rounded-full blur-[80px] [transform:translateZ(-50px)]"></div>
 
-          <div className="relative h-full w-full bg-slate-200 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center group rotate-3 hover:rotate-0 transition-transform duration-500">
-            <div className="text-slate-400 flex flex-col items-center">
-              <User className="w-24 h-24 mb-4 opacity-50" />
-              <span className="text-sm uppercase tracking-widest">
-                Photo Placeholder
-              </span>
+            {/* Tech Ring 1 - Outer Dashed Circle */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-[95%] border border-dashed border-slate-300/40 rounded-full [transform:translateZ(-30px)] animate-[spin_60s_linear_infinite]"></div>
+
+            {/* Tech Ring 2 - Inner Gradient Ring */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] border-2 border-transparent bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full [mask-image:linear-gradient(white,transparent)] [transform:translateZ(-20px)]"></div>
+
+            {/* Floating Tech Elements (Fusion Blocks) */}
+            {/* Top Right Block */}
+            <div className="absolute top-10 right-4 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-cyan-300/10 backdrop-blur-sm rounded-2xl border border-white/20 [transform:translateZ(10px)_rotate(12deg)] group-hover:[transform:translateZ(30px)_rotate(20deg)] transition-all duration-500 shadow-lg"></div>
+
+            {/* Bottom Left Block */}
+            <div className="absolute bottom-12 left-4 w-28 h-28 bg-gradient-to-tr from-purple-400/10 to-pink-300/10 backdrop-blur-sm rounded-full border border-white/20 [transform:translateZ(5px)] group-hover:[transform:translateZ(25px)] transition-all duration-500 shadow-lg"></div>
+
+            {/* Small Floating Particles */}
+            <div className="absolute top-1/4 left-10 w-4 h-4 bg-blue-400 rounded-full blur-[2px] animate-pulse [transform:translateZ(40px)]"></div>
+            <div className="absolute bottom-1/3 right-10 w-3 h-3 bg-purple-400 rounded-full blur-[2px] animate-pulse delay-700 [transform:translateZ(30px)]"></div>
+
+            {/* Front Layer - Image */}
+            <div className="absolute inset-0 flex items-end justify-center transition-transform duration-500 [transform:translateZ(50px)] group-hover:[transform:translateZ(80px)_scale(1.05)]">
+              <img
+                src={config.heroImg}
+                alt="Profile"
+                className="w-full h-full object-contain object-bottom drop-shadow-2xl"
+                style={{
+                  objectPosition: "top", // 靠上
+                  transform: "scale(1.3)", // 放大 1.3 倍
+                  transformOrigin: "center top", // 从顶部中心放大
+                }}
+              />
             </div>
-            {/* Image tag for future use */}
-            {/* <img src="" alt="Profile" className="object-cover w-full h-full" /> */}
           </div>
         </div>
       </div>
