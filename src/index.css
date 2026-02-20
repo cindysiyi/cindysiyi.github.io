@@ -1,10 +1,125 @@
 @import "tailwindcss";
 
-html, body, #root {
+@layer components {
+
+  /* Hero Section Theme */
+  .hero-container {
+    @apply bg-white overflow-hidden relative;
+  }
+
+  .hero-content-wrapper {
+    @apply flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto py-12 md:py-0 px-4 md:px-8;
+  }
+
+  /* Typography */
+  .hero-title {
+    @apply text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-slate-900;
+  }
+
+  .hero-highlight {
+    @apply text-blue-600;
+  }
+
+  .hero-subtitle {
+    @apply text-lg md:text-xl text-slate-600 max-w-lg font-medium leading-relaxed;
+  }
+
+  /* Audio Player */
+  .hero-audio-player {
+    @apply flex items-center space-x-4 bg-white/80 backdrop-blur-md p-2 pr-6 rounded-full shadow-lg border border-blue-200 hover:shadow-blue-200/50 hover:scale-105 transition-all duration-300 ring-1 ring-blue-100;
+  }
+
+  .hero-play-button {
+    @apply flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg shadow-blue-500/30 group-hover:animate-pulse;
+  }
+
+  /* Floating Elements */
+  .float-card-glass {
+    @apply bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50;
+  }
+
+  .float-tag-yellow {
+    @apply bg-yellow-400 text-white font-black text-sm px-6 py-2 rounded-lg shadow-lg;
+  }
+
+  /* Background Effects */
+  .bg-blob-blue {
+    @apply bg-blue-100/50 rounded-full blur-2xl;
+    animation: blob 7s infinite;
+  }
+
+  .bg-blob-purple {
+    @apply bg-purple-100/50 rounded-full blur-2xl;
+    animation: blob 7s infinite;
+  }
+
+  /* 3D Particles & Breathing Effects */
+  .particle-3d {
+    @apply absolute rounded-full opacity-60 animate-pulse;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(59, 130, 246, 0.5));
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+
+  .breathing-gradient {
+    @apply absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/30 to-blue-50/30;
+    background-size: 200% 200%;
+    animation: breathing 8s ease infinite;
+  }
+
+  /* Keyframes definitions */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes breathing {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent default scroll, we will control it in the App container */
+  overflow: hidden;
+  /* Prevent default scroll, we will control it in the App container */
 }
 
 /* Custom scrollbar hide for cleaner look */

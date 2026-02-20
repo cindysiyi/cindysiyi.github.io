@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
 import { ArrowDown, Play, Pause, Code, Brain, Rocket } from "lucide-react";
@@ -8,32 +9,71 @@ import { config } from "../config";
 const Hero: React.FC = () => {
   const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
+
+  React.useEffect(() => {
+    // Attempt auto-play when component mounts
+    const playAudio = async () => {
+      if (audioRef.current) {
+        try {
+          audioRef.current.volume = 0.5; // Set reasonable default volume
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log("Auto-play prevented:", error);
+          setIsPlaying(false);
+        }
+      }
+    };
+    playAudio();
+  }, []);
 
   const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    // Logic for playing audio will be implemented later
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((e) => console.error("Play failed:", e));
+      }
+      setIsPlaying(!isPlaying);
+    }
   };
 
   return (
-    <Section id="home" className="bg-white overflow-hidden">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto py-12 md:py-0 px-4 md:px-8">
+    <Section id="home" className="hero-container">
+      <audio
+        ref={audioRef}
+        src={config.audio}
+        onEnded={() => setIsPlaying(false)}
+      />
+      {/* Breathing Gradient Background */}
+      <div className="breathing-gradient pointer-events-none -z-20"></div>
+
+      {/* 3D Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="particle-3d w-3 h-3 top-[20%] left-[10%] animate-[float_8s_ease-in-out_infinite]"></div>
+        <div className="particle-3d w-4 h-4 top-[60%] left-[5%] animate-[float_12s_ease-in-out_infinite_1s]"></div>
+        <div className="particle-3d w-2 h-2 top-[30%] right-[15%] animate-[float_10s_ease-in-out_infinite_2s]"></div>
+        <div className="particle-3d w-5 h-5 top-[80%] right-[10%] animate-[float_15s_ease-in-out_infinite_0.5s]"></div>
+        <div className="particle-3d w-2 h-2 top-[15%] right-[40%] animate-[float_9s_ease-in-out_infinite_1.5s]"></div>
+      </div>
+
+      <div className="hero-content-wrapper">
         {/* Left Side: Manifesto & Audio */}
         <div className="flex flex-col items-start space-y-8 max-w-2xl z-20">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-slate-900">
+          <h1 className="hero-title">
             {t("hero.title_line1")}
             <br />
-            <span className="text-blue-600">{t("hero.title_line2")}</span>
+            <span className="hero-highlight">{t("hero.title_line2")}</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-600 max-w-lg font-medium leading-relaxed">
-            {t("hero.subtitle")}
-          </p>
+          <p className="hero-subtitle">{t("hero.subtitle")}</p>
 
           {/* Audio Player - Styled as a primary action button */}
-          <div className="flex items-center space-x-4 bg-white p-2 pr-6 rounded-full shadow-xl border border-blue-100 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
+          <div className="hero-audio-player group">
             <button
               onClick={togglePlay}
-              className="flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+              className="hero-play-button"
               aria-label={
                 isPlaying ? t("hero.pause_intro") : t("hero.play_intro")
               }
@@ -75,7 +115,7 @@ const Hero: React.FC = () => {
           {/* Floating Elements Container */}
           <div className="relative w-full h-full">
             {/* Floating Card 1: Math/Code (Top Left) */}
-            <div className="absolute top-[10%] -left-[5%] md:-left-[10%] bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10 animate-float">
+            <div className="absolute top-[10%] -left-[5%] md:-left-[10%] float-card-glass transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10 animate-float">
               <div className="flex items-center gap-2 mb-2">
                 <Code className="w-5 h-5 text-blue-500" />
                 <span className="text-xs font-bold text-slate-400">PRD.md</span>
@@ -93,7 +133,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Floating Tag: "AI AGENT" (Bottom Left - The Yellow Pill) */}
-            <div className="absolute bottom-[20%] -left-[5%] bg-yellow-400 text-white font-black text-sm px-6 py-2 rounded-lg transform -rotate-12 shadow-lg z-20 hover:scale-110 transition-transform duration-300 animate-float animation-delay-2000">
+            <div className="absolute bottom-[20%] -left-[5%] float-tag-yellow transform -rotate-12 hover:scale-110 transition-transform duration-300 animate-float animation-delay-2000 z-20">
               AI AGENT
             </div>
 
