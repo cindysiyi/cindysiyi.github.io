@@ -1,0 +1,30 @@
+{
+  "header": {
+    "home": "首页",
+    "about": "关于",
+    "projects": "项目",
+    "contact": "联系",
+    "wechat": "微信"
+  },
+  "hero": {
+    "title_line1": "AI 产品",
+    "title_line2": "经理",
+    "subtitle": "连接人类需求与人工智能的桥梁。为下一代技术打造直观体验。"
+  },
+  "about": {
+    "section_title": "关于我",
+    "main_heading": "战略家。创新者。建设者。",
+    "description1": "凭借产品管理背景和对 AI 的深厚热情，我专注于将复杂的技术能力转化为有意义的用户价值。",
+    "description2": "我的方法结合了数据驱动的洞察力和以人为本的设计原则，旨在构建不仅智能而且实用的产品。"
+  },
+  "projects": {
+    "section_title": "精选作品",
+    "item_title": "项目名称 {{number}}",
+    "item_desc": "项目简介以及在开发过程中扮演的角色。",
+    "tag": "AI / 机器学习"
+  },
+  "contact": {
+    "title": "保持联系",
+    "subtitle": "随时欢迎讨论新机会、AI 趋势，或者仅仅是打个招呼。"
+  }
+}

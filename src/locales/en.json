@@ -1,0 +1,30 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "wechat": "WECHAT"
+  },
+  "hero": {
+    "title_line1": "AI PRODUCT",
+    "title_line2": "MANAGER",
+    "subtitle": "Bridging the gap between human needs and artificial intelligence. Crafting intuitive experiences for the next generation of technology."
+  },
+  "about": {
+    "section_title": "About Me",
+    "main_heading": "Strategist. Innovator. Builder.",
+    "description1": "With a background in product management and a deep passion for AI, I specialize in translating complex technical capabilities into meaningful user value.",
+    "description2": "My approach combines data-driven insights with human-centric design principles to build products that are not just smart, but helpful."
+  },
+  "projects": {
+    "section_title": "Selected Works",
+    "item_title": "Project Name {{number}}",
+    "item_desc": "Brief description of the project and the role played in its development.",
+    "tag": "AI / ML"
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "subtitle": "Always open to discussing new opportunities, AI trends, or just to say hello."
+  }
+}
