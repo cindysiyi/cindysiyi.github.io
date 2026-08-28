@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
 import { ArrowDown, Play, Pause, Code, Brain, Rocket } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -10,33 +9,21 @@ const Hero: React.FC = () => {
   const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  React.useEffect(() => {
-    // Attempt auto-play when component mounts
-    const playAudio = async () => {
-      if (audioRef.current) {
-        try {
-          audioRef.current.volume = 0.5; // Set reasonable default volume
-          await audioRef.current.play();
-          setIsPlaying(true);
-        } catch (error) {
-          console.log("Auto-play prevented:", error);
-          setIsPlaying(false);
-        }
-      }
-    };
-    playAudio();
-  }, []);
+  const hasAudio = Boolean(config.audio);
 
   const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch((e) => console.error("Play failed:", e));
-      }
-      setIsPlaying(!isPlaying);
+    if (!audioRef.current || !hasAudio) {
+      return;
     }
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      return;
+    }
+    audioRef.current
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch((e) => console.error("Play failed:", e));
   };
 
   return (
@@ -105,7 +92,7 @@ const Hero: React.FC = () => {
 
       <div className="hero-content-wrapper">
         {/* Left Side: Manifesto & Audio */}
-        <div className="flex flex-col items-start space-y-8 max-w-2xl z-20">
+        <div className="flex flex-col items-start space-y-6 md:space-y-8 max-w-2xl z-20">
           <h1 className="hero-title">
             <span className="hero-type-line hero-type-line-1 hero-type-caret">
               {t("hero.title_line1")}
@@ -119,10 +106,11 @@ const Hero: React.FC = () => {
           <p className="hero-subtitle">{t("hero.subtitle")}</p>
 
           {/* Audio Player - Styled as a primary action button */}
-          <div className="hero-audio-player group">
+          <div className={`hero-audio-player group ${hasAudio ? "" : "hero-audio-player-pending"}`}>
             <button
               onClick={togglePlay}
               className="hero-play-button"
+              disabled={!hasAudio}
               aria-label={
                 isPlaying ? t("hero.pause_intro") : t("hero.play_intro")
               }
@@ -133,12 +121,12 @@ const Hero: React.FC = () => {
                 <Play className="w-6 h-6 ml-1 fill-current" />
               )}
             </button>
-            <div className="flex flex-col">
-              {/* <span className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
-                {isPlaying ? "Playing..." : "Intro.mp3"}
-              </span> */}
+            <div className="flex min-w-0 flex-col">
+              <span className="hero-audio-label">
+                {t("hero.audio_label")}
+              </span>
               <div className="flex items-center space-x-1 h-4 mt-1">
-                {[...Array(16)].map((_, i) => (
+                {Array.from({ length: 16 }, (_, i) => (
                   <div
                     key={i}
                     className={`w-1 rounded-full transition-all duration-300 ${isPlaying ? "animate-pulse bg-cyan-400" : "bg-slate-600/70"}`}
@@ -150,12 +138,15 @@ const Hero: React.FC = () => {
                   ></div>
                 ))}
               </div>
+              <span className="hero-audio-status">
+                {hasAudio ? t("hero.audio_ready") : t("hero.audio_pending")}
+              </span>
             </div>
           </div>
         </div>
 
         {/* Right Side: Photo - HomeworkAI Style Composition */}
-        <div className="mt-16 md:mt-0 relative w-full max-w-lg aspect-[4/5] md:aspect-square flex items-center justify-center">
+        <div className="hero-visual mt-6 md:mt-0 relative w-full max-w-lg aspect-[4/5] md:aspect-square flex items-center justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-cyan-500/10 rounded-full blur-3xl -z-10"></div>
           <div className="absolute top-10 right-0 w-64 h-64 bg-indigo-500/15 rounded-full blur-2xl -z-10 animate-blob"></div>
           <div className="absolute bottom-0 left-10 w-48 h-48 bg-fuchsia-500/10 rounded-full blur-2xl -z-10 animate-blob animation-delay-2000"></div>

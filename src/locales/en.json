@@ -9,8 +9,11 @@
   },
   "hero": {
     "title_line1": "Hi, I'm Siyi,",
-    "title_line2": "An AI Product Practitioner.",
-    "subtitle": "In the world of AI, I am dedicated to making products warmer and more storied. I have interned at ByteDance's AI Innovation Department and independently led the full-process product work for an AI Agent project. I love chasing the AI frontier and striving for growth!",
+    "title_line2": "An AI Practitioner.",
+    "subtitle": "I enjoy turning frontier AI ideas into usable experiences. My work spans ByteDance's AI Innovation business, an AI Agent project, and vibe coding experiments that turn ideas into working tools.",
+    "audio_label": "English + 日本語 · 15s language intro",
+    "audio_ready": "Play my bilingual intro",
+    "audio_pending": "Voice file to upload",
     "play_intro": "Play Intro",
     "pause_intro": "Pause Intro"
   },
@@ -22,12 +25,19 @@
   },
   "experience": {
     "section_title": "Experience",
+    "timeline_mobile_title": "A path from content and education to AI products",
     "read_more": "Read More",
     "byte_dance": {
       "company": "ByteDance",
       "role": "AI Innovation Dept. Product Operations Intern",
       "period": "2025.09 - 2026.03",
       "description": "Participated in AI content ecosystem construction, focusing on content quality improvement and data system establishment.",
+      "metric1_value": "30%+",
+      "metric1_label": "weekly UG supply coverage",
+      "metric2_value": "50%+",
+      "metric2_label": "avg. material lift",
+      "metric3_value": "20k+",
+      "metric3_label": "user feedback",
       "achievement1": "reconstructed PE system, inspected 1000+ contents, detection rate +30%, efficiency +25%",
       "achievement2": "Built 50k+ material tag library, delivered 3 insight reports, supported 4 AI product features",
       "achievement3": "Managed 200+ user community, generated 500+ quality contents, activity rate +18%",
@@ -38,6 +48,12 @@
       "role": "Intern",
       "period": "2025.02 - 2025.08",
       "description": "Participated in government press releases and media communication, assisting in planning and executing major press events.",
+      "metric1_value": "15+",
+      "metric1_label": "media partners",
+      "metric2_value": "3+",
+      "metric2_label": "global events",
+      "metric3_value": "Multi",
+      "metric3_label": "content archives",
       "achievement1": "Assisted in organizing 10+ press conferences, drafting press releases and Q&As",
       "achievement2": "Participated in city image promotional video planning, covering mainstream media platforms",
       "achievement3": "Monitored public opinion, output daily/weekly reports to support decision making"
@@ -57,21 +73,66 @@
     "item_title": "Project Name {{number}}",
     "item_desc": "Brief description of the project and the role played in its development.",
     "tag": "AI / ML",
+    "card_status": "To fill",
+    "cards": {
+      "agent_case": {
+        "tag": "Product case",
+        "title": "AI Agent Case Study",
+        "desc": "Use this for the PRD, user journey, agent flow, key UI screenshots, evaluation logic, and project reflection."
+      },
+      "creator_collection": {
+        "tag": "Creator work",
+        "title": "AI Media Highlights",
+        "desc": "Use this for content screenshots, topic selection methods, engagement data, and public learning output."
+      },
+      "research_notes": {
+        "tag": "Product research",
+        "title": "AI Product Notes",
+        "desc": "Use this for competitor teardown, prompt/agent interaction analysis, AI tool testing, and opportunity judgment."
+      }
+    },
     "agent": {
       "title": "AI Consulting Agent Project",
-      "role": "Founder & Product Lead",
+      "role": "Project Initiator & Product Practitioner",
       "description": "Starting with college entrance examination volunteer application, providing precise recommendations and personalized planning to help parents and students improve decision-making efficiency.",
       "highlight1": "Rapid 0-to-1 Product Build: Self-taught Cursor programming tools and related technologies, applying them to actual product development in a short time",
       "highlight2": "Innovative Voice Interaction: Built large model nodes + humanNode feedback loop via code, dynamically probing user preferences for more precise, human-centric AI recommendations",
       "highlight3": "Exquisite Visual Reports: Delivered professional-grade volunteer planning reports post-consultation, embedding authoritative data + dynamic charts to highlight product value",
       "highlight4": "Full-Process Product Leadership: Led the entire project from user pain point insight, market analysis to feature design and iterative optimization",
       "highlight5": "Cutting-edge Tech Adaptability: Continuously explored and integrated frontier technologies during project execution",
-      "cta_case": "View Full Case",
+      "badge": "Agent + Report",
+      "cta_case": "Case study to add",
       "cta_demo": "Try Demo"
     }
   },
+  "creator": {
+    "section_title": "AI Creator / Public Learning",
+    "title": "Turning frontier tracking into visible growth",
+    "subtitle": "This section can carry your AI creator identity: not just saying you follow the frontier, but showing how you read, test, deconstruct, publish, and turn learning into product judgment.",
+    "stat1_value": "Frontier",
+    "stat1_label": "AI tools and agents",
+    "stat2_value": "Teardown",
+    "stat2_label": "Products and UX",
+    "stat3_value": "Output",
+    "stat3_label": "Public notes",
+    "track1_title": "Frontier Tracking",
+    "track1_desc": "Record AI tools, agent applications, model capability shifts, and real usage experiences to show industry sensitivity.",
+    "track2_title": "Product Teardowns",
+    "track2_desc": "Break popular AI products into scenarios, interaction paths, business logic, and improvement opportunities.",
+    "track3_title": "Public Reflection",
+    "track3_desc": "Turn internships, projects, and learning into reusable thinking so readers can see my learning speed and communication.",
+    "posts_title": "Featured post links",
+    "link_pending": "To add"
+  },
   "contact": {
+    "section_label": "Contact",
     "title": "Let's Connect",
-    "subtitle": "Always open to discussing new opportunities, AI trends, or just to say hello."
+    "subtitle": "Always open to discussing new opportunities, AI trends, or just to say hello.",
+    "cta": "Get in Touch",
+    "pending": "Contact to update",
+    "email": "Email",
+    "wechat": "WeChat",
+    "resume": "Resume",
+    "view_resume": "View resume"
   }
 }

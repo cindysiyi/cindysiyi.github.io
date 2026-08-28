@@ -2,7 +2,15 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import Section from "./Section";
 import { config } from "../config";
-import { Briefcase, Calendar } from "lucide-react";
+import {
+  Briefcase,
+  Calendar,
+  CheckCircle2,
+  Database,
+  FileText,
+  Globe2,
+  Newspaper,
+} from "lucide-react";
 
 type ExperienceKey = "byte_dance" | "shanghai_gov" | "teaching";
 
@@ -19,32 +27,42 @@ interface ExperienceBlockProps {
 }
 
 const getImages = (dataKey: ExperienceKey) => {
-  const experienceImages = config[dataKey as keyof typeof config];
-  return Array.isArray(experienceImages) ? experienceImages : [];
+  const experienceImages: Record<ExperienceKey, string[]> = {
+    byte_dance: config.byte_dance,
+    shanghai_gov: config.shanghai_gov,
+    teaching: config.teaching,
+  };
+  return experienceImages[dataKey];
 };
 
 const ExperienceLeft: React.FC<{ dataKey: ExperienceKey }> = ({ dataKey }) => {
   const { t } = useTranslation();
+  const metrics = [1, 2, 3].map((num) => ({
+    value: t(`experience.${dataKey}.metric${num}_value`),
+    label: t(`experience.${dataKey}.metric${num}_label`),
+  }));
 
   return (
-    <div className="flex flex-col space-y-6 md:w-1/2 z-10">
-      <div className="flex items-center space-x-2 text-purple-600">
-        <Briefcase className="w-5 h-5" />
-        <span className="text-sm font-bold tracking-widest uppercase">
-          {t("experience.section_title")}
-        </span>
-      </div>
+    <div className="relative z-10 flex flex-col space-y-7 lg:w-[48%]">
+      <div className="space-y-5">
+        <div className="inline-flex items-center gap-2 text-purple-600">
+          <Briefcase className="w-5 h-5" />
+          <span className="text-sm font-bold tracking-widest uppercase">
+            {t("experience.section_title")}
+          </span>
+        </div>
 
-      <div className="space-y-2">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-          {t(`experience.${dataKey}.company`)}
-        </h2>
-        <h3 className="text-xl md:text-2xl text-slate-600 font-medium">
-          {t(`experience.${dataKey}.role`)}
-        </h3>
-        <div className="flex items-center space-x-2 text-slate-500 text-sm font-medium">
-          <Calendar className="w-4 h-4" />
-          <span>{t(`experience.${dataKey}.period`)}</span>
+        <div className="space-y-3">
+          <h2 className="text-4xl font-black leading-tight text-slate-950 md:text-6xl">
+            {t(`experience.${dataKey}.company`)}
+          </h2>
+          <h3 className="inline-flex rounded-lg bg-white px-4 py-2 text-lg font-bold text-slate-700 shadow-sm ring-1 ring-slate-200 md:text-xl">
+            {t(`experience.${dataKey}.role`)}
+          </h3>
+          <div className="flex items-center space-x-2 text-sm font-medium text-slate-500">
+            <Calendar className="w-4 h-4" />
+            <span>{t(`experience.${dataKey}.period`)}</span>
+          </div>
         </div>
       </div>
 
@@ -52,7 +70,20 @@ const ExperienceLeft: React.FC<{ dataKey: ExperienceKey }> = ({ dataKey }) => {
         {t(`experience.${dataKey}.description`)}
       </p>
 
-      <ul className="space-y-3">
+      <div className="grid grid-cols-3 gap-3 max-w-xl">
+        {metrics.map((metric) => (
+          <div key={metric.label} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="text-xl font-black text-slate-950">
+              {metric.value}
+            </div>
+            <div className="mt-1 text-xs leading-relaxed text-slate-500">
+              {metric.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <ul className="space-y-3 max-w-2xl">
         {[1, 2, 3, 4].map((num) => {
           const key = `experience.${dataKey}.achievement${num}`;
           const content = t(key);
@@ -60,7 +91,7 @@ const ExperienceLeft: React.FC<{ dataKey: ExperienceKey }> = ({ dataKey }) => {
 
           return (
             <li key={num} className="flex items-start space-x-3 text-slate-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-500" />
               <span className="text-sm md:text-base leading-relaxed">
                 {content}
               </span>
@@ -91,9 +122,9 @@ const ExperienceSectionLayout: React.FC<ExperienceSectionProps> = ({
   right,
 }) => (
   <Section id={id} className={`bg-slate-50 ${className}`}>
-    <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl mx-auto h-full py-12">
+    <div className="flex w-full max-w-7xl flex-col items-center justify-between gap-12 px-6 py-20 md:px-10 lg:min-h-screen lg:flex-row lg:py-12">
       <ExperienceLeft dataKey={dataKey} />
-      <div className="md:w-5/12 mt-12 md:mt-0 relative h-[300px] md:h-[400px] w-full">
+      <div className="relative h-[420px] w-full lg:h-[560px] lg:w-[48%]">
         {right}
       </div>
     </div>
@@ -104,25 +135,31 @@ const ByteDanceRight: React.FC<{ images: string[]; label: string }> = ({
   images,
   label,
 }) => (
-  <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl bg-slate-900/10 transform rotate-2 hover:rotate-0 transition-all duration-500 p-3">
-    <div
-      className={`grid h-full w-full gap-3 ${images.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}
-    >
-      {images.map((src, index) => {
-        const spanClass = images.length >= 3 && index === 0 ? "row-span-2" : "";
-        return (
-          <div
-            key={src}
-            className={`relative rounded-xl overflow-hidden ${spanClass}`}
-          >
-            <img
-              src={src}
-              alt={`${label}-${index + 1}`}
-              className="w-full h-full object-cover"
-            />
+  <div className="absolute inset-0 grid grid-rows-[1fr_auto] gap-4">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white p-3 shadow-2xl shadow-slate-200/70">
+      <div className="flex h-full flex-col overflow-hidden rounded-md bg-slate-100">
+        <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
+            Content Quality System
+          </span>
+          <Database className="h-4 w-4 text-cyan-500" />
+        </div>
+        <img
+          src={images[0]}
+          alt={`${label}-1`}
+          className="min-h-0 w-full flex-1 object-cover"
+        />
+      </div>
+    </div>
+    <div className="grid grid-cols-3 gap-3">
+      {["Growth supply", "Quality labels", "Model review"].map((item) => (
+        <div key={item} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <FileText className="h-5 w-5 text-purple-500" />
+          <div className="mt-3 text-xs font-bold text-slate-600">
+            {item}
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -131,10 +168,21 @@ const ShanghaiRight: React.FC<{ images: string[]; label: string }> = ({
   images,
   label,
 }) => (
-  <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-slate-100 to-slate-200 transform -rotate-1 hover:rotate-0 transition-all duration-500">
-    <div className="relative w-full h-full">
+  <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] gap-4 rounded-lg bg-gradient-to-br from-slate-100 via-white to-cyan-50 p-5 shadow-2xl shadow-slate-200">
+    <div className="flex items-center justify-between rounded-lg bg-white px-5 py-4 shadow-sm">
+      <div>
+        <div className="text-xs font-bold uppercase tracking-widest text-slate-400">
+          Public Communication
+        </div>
+        <div className="mt-1 text-lg font-black text-slate-950">
+          Global Events Desk
+        </div>
+      </div>
+      <Globe2 className="h-8 w-8 text-cyan-500" />
+    </div>
+    <div className="grid min-h-0 grid-cols-2 gap-4">
       {images[0] && (
-        <div className="absolute top-6 left-6 w-[68%] h-[70%] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/70 transform -rotate-3">
+        <div className="overflow-hidden rounded-lg shadow-xl ring-1 ring-white/70">
           <img
             src={images[0]}
             alt={`${label}-1`}
@@ -143,7 +191,7 @@ const ShanghaiRight: React.FC<{ images: string[]; label: string }> = ({
         </div>
       )}
       {images[1] && (
-        <div className="absolute bottom-6 right-6 w-[60%] h-[60%] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/70 transform rotate-3">
+        <div className="overflow-hidden rounded-lg shadow-xl ring-1 ring-white/70">
           <img
             src={images[1]}
             alt={`${label}-2`}
@@ -151,6 +199,17 @@ const ShanghaiRight: React.FC<{ images: string[]; label: string }> = ({
           />
         </div>
       )}
+    </div>
+    <div className="rounded-lg bg-slate-950 p-4 text-white shadow-xl">
+      <div className="flex items-center gap-2 text-sm font-bold">
+        <Newspaper className="h-5 w-5 text-cyan-300" />
+        Media Briefing
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-300">
+        <span className="rounded-full bg-white/10 px-3 py-1">Agenda</span>
+        <span className="rounded-full bg-white/10 px-3 py-1">Q&A</span>
+        <span className="rounded-full bg-white/10 px-3 py-1">Archive</span>
+      </div>
     </div>
   </div>
 );
@@ -267,7 +326,7 @@ export const TeachingExperience: React.FC<ExperienceBlockProps> = ({
 
   return (
     <Section id={id} className={`bg-slate-950 ${className}`} fullBleed>
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="relative min-h-screen w-full overflow-hidden">
         <div className="absolute inset-0">
           {images[0] ? (
             <img
@@ -281,7 +340,7 @@ export const TeachingExperience: React.FC<ExperienceBlockProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/35 to-slate-900/10"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/45 via-slate-950/10 to-transparent"></div>
         </div>
-        <div className="relative z-10 h-full flex items-center">
+        <div className="relative z-10 flex min-h-screen items-center">
           <div className="container mx-auto px-8">
             <div className="teaching-text max-w-xl teaching-card">
               <div className="flex items-center space-x-2 text-cyan-200">

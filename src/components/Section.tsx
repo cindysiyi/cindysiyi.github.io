@@ -16,7 +16,7 @@ const Section: React.FC<SectionProps> = ({
   return (
     <section
       id={id}
-      className={`h-screen w-full snap-start flex flex-col justify-center items-center relative overflow-hidden ${className}`}
+      className={`min-h-screen w-full snap-start flex flex-col justify-center items-center relative overflow-x-hidden ${className}`}
     >
       {fullBleed ? (
         children
