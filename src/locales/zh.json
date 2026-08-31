@@ -8,11 +8,9 @@
     "about": "关于"
   },
   "hero": {
-    "title_line1": "Hi，我是 Siyi，",
+    "title_line1": "Hi，我是 Cindy，",
     "title_line2": "An AI Practitioner.",
-    "subtitle": "在 AI 的世界里，我喜欢把前沿技术拆成真实可用的体验。曾在字节跳动 AI 创新业务部门实习，也独立做过 AI Agent 与 vibe coding 项目；我持续追踪前沿、公开学习、把想法做成可以被体验的东西。",
-    "audio_label": "English + 日本語 · 15s language intro",
-    "audio_ready": "点击播放我的双语介绍",
+    "subtitle": "AI Product Manager exploring consumer AI products, Agent workflows, and rapid product experiments.",
     "audio_pending": "语音文件待上传",
     "play_intro": "播放介绍",
     "pause_intro": "暂停播放"
@@ -40,8 +38,8 @@
       "metric3_label": "用户反馈收集",
       "achievement1": "负责核心品类“开放故事”的增长供给策略，结合 UG 素材数据与用户行为，定义不同题材在拉新、留存环节的产品需求与承接标准。",
       "achievement2": "主导策略供给覆盖周度 UG 渠道超 30% 的素材供给，所支持内容平均素材带量超 50%，推动品类用户规模化增长。",
-      "achievement3": "定义优质 / 低质内容标准，并转化为可量化标签与特征，推动应用于机审模型训练，使生态机审误伤率小于 10%。",
-      "achievement4": "参与新体裁质量标准与内容准出规则搭建，配合产品和模型端完成 3000 个测试内容调优；策划 2 期玩家团活动，收集用户反馈 2w+ 条，反哺质量标准与提示词优化。"
+      "achievement3": "建立内容质量标签，推动机审模型训练，误伤率低于 10%。",
+      "achievement4": "完成 3000 个测试内容调优；收集用户反馈 2w+ 条。"
     },
     "shanghai_gov": {
       "company": "上海市政府新闻办公室",

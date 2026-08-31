@@ -8,11 +8,9 @@
     "about": "About"
   },
   "hero": {
-    "title_line1": "Hi, I'm Siyi,",
+    "title_line1": "Hi, I'm Cindy,",
     "title_line2": "An AI Practitioner.",
-    "subtitle": "I enjoy turning frontier AI ideas into usable experiences. My work spans ByteDance's AI Innovation business, an AI Agent project, and vibe coding experiments that turn ideas into working tools.",
-    "audio_label": "English + 日本語 · 15s language intro",
-    "audio_ready": "Play my bilingual intro",
+    "subtitle": "AI Product Manager exploring consumer AI products, Agent workflows, and rapid product experiments.",
     "audio_pending": "Voice file to upload",
     "play_intro": "Play Intro",
     "pause_intro": "Pause Intro"

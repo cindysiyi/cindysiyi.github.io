@@ -8,11 +8,9 @@
         "about": "プロフィール"
     },
     "hero": {
-        "title_line1": "こんにちは、Siyiです。",
+        "title_line1": "こんにちは、Cindyです。",
         "title_line2": "An AI Practitioner.",
-        "subtitle": "最前線のAIのアイデアを、実際に使える体験に変えることが好きです。ByteDanceのAIイノベーション事業での経験、AI Agentプロジェクト、vibe codingによるツール開発を通じて学び続けています。",
-        "audio_label": "English + 日本語 · 15s language intro",
-        "audio_ready": "バイリンガル紹介を再生",
+        "subtitle": "AI Product Manager exploring consumer AI products, Agent workflows, and rapid product experiments.",
         "audio_pending": "音声ファイルは後で追加",
         "play_intro": "紹介を再生",
         "pause_intro": "一時停止"

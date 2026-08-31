@@ -1,395 +1,324 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import Section from "./Section";
-import { config } from "../config";
-import {
-  Briefcase,
-  Calendar,
-  CheckCircle2,
-  Database,
-  FileText,
-  Globe2,
-  Newspaper,
-} from "lucide-react";
-
-type ExperienceKey = "byte_dance" | "shanghai_gov" | "teaching";
-
-interface ExperienceSectionProps {
-  id: string;
-  dataKey: ExperienceKey;
-  className?: string;
-  right: React.ReactNode;
-}
 
 interface ExperienceBlockProps {
   id: string;
   className?: string;
 }
 
-const getImages = (dataKey: ExperienceKey) => {
-  const experienceImages: Record<ExperienceKey, string[]> = {
-    byte_dance: config.byte_dance,
-    shanghai_gov: config.shanghai_gov,
-    teaching: config.teaching,
-  };
-  return experienceImages[dataKey];
+interface ExperienceItem {
+  id: string;
+  category: string;
+  year: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  imagePosition: string;
+  href?: string;
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    id: "bachelor",
+    category: "EDUCATION",
+    year: "2023",
+    title: "上海大学",
+    subtitle: "日语专业 · 本科",
+    description: "日语专四优秀 · IELTS 7.0",
+    image: "/assets/experience/bachelor.jpg",
+    imagePosition: "center 40%",
+  },
+  {
+    id: "graduate",
+    category: "RESEARCH",
+    year: "2025",
+    title: "上海大学",
+    subtitle: "新闻传播学 · 研究生",
+    description: "聚焦 AI 语境下的信息与用户研究",
+    image: "/assets/experience/graduate.jpg",
+    imagePosition: "center center",
+  },
+  {
+    id: "teaching",
+    category: "TEACHING",
+    year: "2024",
+    title: "西部支教",
+    subtitle: "大学生支教教师",
+    description: "承担6个班级，326名学生的授课任务，为期一年",
+    image: "/assets/experience/teaching.jpg",
+    imagePosition: "58% center",
+  },
+  {
+    id: "bytedance",
+    category: "INTERNSHIP",
+    year: "2026",
+    title: "字节跳动",
+    subtitle: "AI创新业务部门 · 产品运营",
+    description: "AI产品策略与体验迭代",
+    image: "/assets/experience/bytedance-profile.jpg",
+    imagePosition: "center 44%",
+  },
+  {
+    id: "vbuild-founder",
+    category: "FOUNDER",
+    year: "2026",
+    title: "vBuild创始人",
+    subtitle: "OPC · 一站式vibe coding平台",
+    description: "自然语言生成 · 可视化修改 · 一键部署",
+    image: "/assets/experience/vbuild-home.png",
+    imagePosition: "center center",
+    href: "#project-vbuild",
+  },
+  {
+    id: "lighthouse-founder",
+    category: "CO-FOUNDER",
+    year: "2026",
+    title: "灯塔AI联合创始人",
+    subtitle: "高考志愿咨询 Agent",
+    description: "智能体咨询 · 报告生成",
+    image: "/assets/experience/lighthouse-ai.png",
+    imagePosition: "center top",
+    href: "#project-lighthouse",
+  },
+  {
+    id: "ai-media-creator",
+    category: "CREATOR",
+    year: "2026",
+    title: "AI自媒体博主",
+    subtitle: "全网120w+播放",
+    description: "3.4w赞&收藏",
+    image: "/assets/experience/ai-media-creator.jpg",
+    imagePosition: "center 48%",
+    href: "#beyond-resume",
+  },
+  {
+    id: "open-source-author",
+    category: "OPEN SOURCE",
+    year: "2026",
+    title: "开源作者",
+    subtitle: "Clear Recording",
+    description: "支持画中画与配音的本地录屏工具",
+    image: "/assets/experience/clear-recording.png",
+    imagePosition: "center center",
+    href: "#vibe-coding",
+  },
+  {
+    id: "trilingual",
+    category: "LANGUAGE",
+    year: "ZH · EN · JP",
+    title: "三语习得",
+    subtitle: "中文、英语、日语",
+    description: "IELTS 7.0 · 日语专四优秀 · 可全英文办公",
+    image: "/assets/experience/trilingual.jpg",
+    imagePosition: "center 38%",
+    href: "#beyond-resume",
+  },
+];
+
+const INITIAL_INDEX = 3;
+
+const getRelativeIndex = (index: number, activeIndex: number) => {
+  const half = Math.floor(experiences.length / 2);
+  return ((index - activeIndex + experiences.length + half) % experiences.length) - half;
 };
 
-const ExperienceLeft: React.FC<{ dataKey: ExperienceKey }> = ({ dataKey }) => {
-  const { t } = useTranslation();
-  const metrics = [1, 2, 3].map((num) => ({
-    value: t(`experience.${dataKey}.metric${num}_value`),
-    label: t(`experience.${dataKey}.metric${num}_label`),
-  }));
+const ExperienceCard: React.FC<{
+  experience: ExperienceItem;
+  index: number;
+  activeIndex: number;
+  onSelect: (index: number) => void;
+  onHoverChange: (hovering: boolean) => void;
+}> = ({ experience, index, activeIndex, onSelect, onHoverChange }) => {
+  const relativeIndex = getRelativeIndex(index, activeIndex);
+  const distance = Math.abs(relativeIndex);
+  const isActive = index === activeIndex;
+  const style = {
+    "--hero-card-index": relativeIndex,
+    "--hero-card-x-mobile": `${relativeIndex * 76}vw`,
+    "--hero-card-scale": distance === 0 ? 1.01 : distance === 1 ? 0.96 : distance === 2 ? 0.91 : distance === 3 ? 0.86 : 0.82,
+    "--hero-card-opacity": distance === 0 ? 1 : distance === 1 ? 0.82 : distance === 2 ? 0.62 : distance === 3 ? 0.4 : 0.12,
+    "--hero-card-blur": `${distance === 0 ? 0 : distance === 1 ? 0.05 : distance === 2 ? 0.15 : distance === 3 ? 0.3 : 0.7}px`,
+    "--hero-card-z": 20 - distance,
+    pointerEvents: distance <= 3 ? "auto" : "none",
+  } as React.CSSProperties;
+
+  const cardContent = (
+    <span className="experience-orbit-face experience-orbit-front">
+      <span className="experience-orbit-photo">
+        <img
+          src={experience.image}
+          alt={experience.description}
+          loading={distance <= 3 ? "eager" : "lazy"}
+          decoding="async"
+          style={{ objectPosition: experience.imagePosition }}
+        />
+        <span className="experience-orbit-category">
+          {experience.category}
+          {experience.href && <i aria-hidden="true">↗</i>}
+        </span>
+      </span>
+
+      <span className="experience-orbit-copy">
+        <span className="experience-orbit-year">{experience.year}</span>
+        <h3>{experience.title}</h3>
+        <span className="experience-orbit-subtitle">{experience.subtitle}</span>
+        <small>{experience.description}</small>
+      </span>
+    </span>
+  );
+
+  const sharedProps = {
+    className: `experience-hero-card ${isActive ? "is-active" : ""}`,
+    style,
+    onPointerEnter: (event: React.PointerEvent<HTMLElement>) => {
+      if (event.pointerType === "mouse") onHoverChange(true);
+    },
+    onPointerLeave: (event: React.PointerEvent<HTMLElement>) => {
+      if (event.pointerType === "mouse") onHoverChange(false);
+    },
+    "aria-label": `${experience.title}：${experience.subtitle}${experience.href ? (isActive ? "，前往对应页面" : "，点击移到中间") : ""}`,
+    tabIndex: distance <= 3 ? 0 : -1,
+  };
+
+  if (experience.href) {
+    return (
+      <a
+        href={experience.href}
+        {...sharedProps}
+        onClick={(event) => {
+          if (!isActive) {
+            event.preventDefault();
+            onSelect(index);
+          }
+        }}
+      >
+        {cardContent}
+      </a>
+    );
+  }
 
   return (
-    <div className="relative z-10 flex flex-col space-y-7 lg:w-[48%]">
-      <div className="space-y-5">
-        <div className="inline-flex items-center gap-2 text-purple-600">
-          <Briefcase className="w-5 h-5" />
-          <span className="text-sm font-bold tracking-widest uppercase">
-            {t("experience.section_title")}
-          </span>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-4xl font-black leading-tight text-slate-950 md:text-6xl">
-            {t(`experience.${dataKey}.company`)}
-          </h2>
-          <h3 className="inline-flex rounded-lg bg-white px-4 py-2 text-lg font-bold text-slate-700 shadow-sm ring-1 ring-slate-200 md:text-xl">
-            {t(`experience.${dataKey}.role`)}
-          </h3>
-          <div className="flex items-center space-x-2 text-sm font-medium text-slate-500">
-            <Calendar className="w-4 h-4" />
-            <span>{t(`experience.${dataKey}.period`)}</span>
-          </div>
-        </div>
-      </div>
-
-      <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-        {t(`experience.${dataKey}.description`)}
-      </p>
-
-      <div className="grid grid-cols-3 gap-3 max-w-xl">
-        {metrics.map((metric) => (
-          <div key={metric.label} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="text-xl font-black text-slate-950">
-              {metric.value}
-            </div>
-            <div className="mt-1 text-xs leading-relaxed text-slate-500">
-              {metric.label}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <ul className="space-y-3 max-w-2xl">
-        {[1, 2, 3, 4].map((num) => {
-          const key = `experience.${dataKey}.achievement${num}`;
-          const content = t(key);
-          if (content === key || !content) return null;
-
-          return (
-            <li key={num} className="flex items-start space-x-3 text-slate-600">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-500" />
-              <span className="text-sm md:text-base leading-relaxed">
-                {content}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <button
+      type="button"
+      {...sharedProps}
+      onClick={() => onSelect(index)}
+      aria-pressed={isActive}
+    >
+      {cardContent}
+    </button>
   );
 };
-
-const ExperiencePlaceholder: React.FC = () => (
-  <div className="absolute inset-0 bg-slate-200 rounded-2xl overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-all duration-500 group">
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300"></div>
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400">
-      <div className="w-16 h-16 border-2 border-slate-400 border-dashed rounded-lg mb-4 flex items-center justify-center">
-        <span className="text-xs">IMG</span>
-      </div>
-      <span className="text-xs uppercase tracking-widest">Work / Result</span>
-    </div>
-  </div>
-);
-
-const ExperienceSectionLayout: React.FC<ExperienceSectionProps> = ({
-  id,
-  dataKey,
-  className = "",
-  right,
-}) => (
-  <Section id={id} className={`bg-slate-50 ${className}`}>
-    <div className="flex w-full max-w-7xl flex-col items-center justify-between gap-12 px-6 py-20 md:px-10 lg:min-h-screen lg:flex-row lg:py-12">
-      <ExperienceLeft dataKey={dataKey} />
-      <div className="relative h-[420px] w-full lg:h-[560px] lg:w-[48%]">
-        {right}
-      </div>
-    </div>
-  </Section>
-);
-
-const ByteDanceRight: React.FC<{ images: string[]; label: string }> = ({
-  images,
-  label,
-}) => (
-  <div className="absolute inset-0 grid grid-rows-[1fr_auto] gap-4">
-    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white p-3 shadow-2xl shadow-slate-200/70">
-      <div className="flex h-full flex-col overflow-hidden rounded-md bg-slate-100">
-        <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
-            Content Quality System
-          </span>
-          <Database className="h-4 w-4 text-cyan-500" />
-        </div>
-        <img
-          src={images[0]}
-          alt={`${label}-1`}
-          className="min-h-0 w-full flex-1 object-cover"
-        />
-      </div>
-    </div>
-    <div className="grid grid-cols-3 gap-3">
-      {["Growth supply", "Quality labels", "Model review"].map((item) => (
-        <div key={item} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-          <FileText className="h-5 w-5 text-purple-500" />
-          <div className="mt-3 text-xs font-bold text-slate-600">
-            {item}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const ShanghaiRight: React.FC<{ images: string[]; label: string }> = ({
-  images,
-  label,
-}) => (
-  <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] gap-4 rounded-lg bg-gradient-to-br from-slate-100 via-white to-cyan-50 p-5 shadow-2xl shadow-slate-200">
-    <div className="flex items-center justify-between rounded-lg bg-white px-5 py-4 shadow-sm">
-      <div>
-        <div className="text-xs font-bold uppercase tracking-widest text-slate-400">
-          Public Communication
-        </div>
-        <div className="mt-1 text-lg font-black text-slate-950">
-          Global Events Desk
-        </div>
-      </div>
-      <Globe2 className="h-8 w-8 text-cyan-500" />
-    </div>
-    <div className="grid min-h-0 grid-cols-2 gap-4">
-      {images[0] && (
-        <div className="overflow-hidden rounded-lg shadow-xl ring-1 ring-white/70">
-          <img
-            src={images[0]}
-            alt={`${label}-1`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
-      {images[1] && (
-        <div className="overflow-hidden rounded-lg shadow-xl ring-1 ring-white/70">
-          <img
-            src={images[1]}
-            alt={`${label}-2`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
-    </div>
-    <div className="rounded-lg bg-slate-950 p-4 text-white shadow-xl">
-      <div className="flex items-center gap-2 text-sm font-bold">
-        <Newspaper className="h-5 w-5 text-cyan-300" />
-        Media Briefing
-      </div>
-      <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-300">
-        <span className="rounded-full bg-white/10 px-3 py-1">Agenda</span>
-        <span className="rounded-full bg-white/10 px-3 py-1">Q&A</span>
-        <span className="rounded-full bg-white/10 px-3 py-1">Archive</span>
-      </div>
-    </div>
-  </div>
-);
 
 export const ByteDanceExperience: React.FC<ExperienceBlockProps> = ({
   id,
-  className,
+  className = "",
 }) => {
-  const dataKey: ExperienceKey = "byte_dance";
-  const images = getImages(dataKey);
-  const { t } = useTranslation();
-  const label = t(`experience.${dataKey}.company`);
-
-  return (
-    <ExperienceSectionLayout
-      id={id}
-      dataKey={dataKey}
-      className={className}
-      right={
-        images.length > 0 ? (
-          <ByteDanceRight images={images} label={label} />
-        ) : (
-          <ExperiencePlaceholder />
-        )
-      }
-    />
-  );
-};
-
-export const ShanghaiGovExperience: React.FC<ExperienceBlockProps> = ({
-  id,
-  className,
-}) => {
-  const dataKey: ExperienceKey = "shanghai_gov";
-  const images = getImages(dataKey);
-  const { t } = useTranslation();
-  const label = t(`experience.${dataKey}.company`);
-
-  return (
-    <ExperienceSectionLayout
-      id={id}
-      dataKey={dataKey}
-      className={className}
-      right={
-        images.length > 0 ? (
-          <ShanghaiRight images={images} label={label} />
-        ) : (
-          <ExperiencePlaceholder />
-        )
-      }
-    />
-  );
-};
-
-export const TeachingExperience: React.FC<ExperienceBlockProps> = ({
-  id,
-  className,
-}) => {
-  const dataKey: ExperienceKey = "teaching";
-  const images = getImages(dataKey);
-  const { t } = useTranslation();
-  const label = t(`experience.${dataKey}.company`);
+  const [activeIndex, setActiveIndex] = React.useState(INITIAL_INDEX);
+  const [hasEntered, setHasEntered] = React.useState(false);
+  const [isInView, setIsInView] = React.useState(false);
+  const [isHoveringCard, setIsHoveringCard] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+  const hasAutoAdvancedRef = React.useRef(false);
 
   React.useEffect(() => {
-    const section = document.getElementById(id);
-    const scroller = document.querySelector("main");
-    if (!section || !(scroller instanceof HTMLElement)) {
-      return;
+    const section = sectionRef.current;
+    const root = document.querySelector(".site-scroll");
+    if (!section || !(root instanceof HTMLElement)) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) setHasEntered(true);
+      },
+      { root, threshold: 0.18 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (!isInView || isHoveringCard || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
     }
 
-    let frame = 0;
-    const update = () => {
-      const rect = section.getBoundingClientRect();
-      const viewHeight = window.innerHeight || 1;
-      const progress = Math.max(-1, Math.min(1, rect.top / viewHeight));
-      section.style.setProperty(
-        "--teaching-image-shift-x",
-        `${progress * 32}px`,
-      );
-      section.style.setProperty(
-        "--teaching-image-shift-y",
-        `${progress * -18}px`,
-      );
-      section.style.setProperty(
-        "--teaching-text-shift-x",
-        `${progress * -24}px`,
-      );
-      section.style.setProperty(
-        "--teaching-text-shift-y",
-        `${progress * 10}px`,
-      );
-    };
+    const timer = window.setTimeout(() => {
+      hasAutoAdvancedRef.current = true;
+      setActiveIndex((current) => (current + 1) % experiences.length);
+    }, hasAutoAdvancedRef.current ? 2500 : 850);
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, isHoveringCard, isInView]);
 
-    const onScroll = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        frame = 0;
-        update();
-      });
-    };
+  const showPrevious = () => {
+    setActiveIndex((current) => (current - 1 + experiences.length) % experiences.length);
+  };
 
-    onScroll();
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+  const showNext = () => {
+    setActiveIndex((current) => (current + 1) % experiences.length);
+  };
 
-    return () => {
-      scroller.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) {
-        window.cancelAnimationFrame(frame);
-      }
-    };
-  }, [id]);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPrevious();
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showNext();
+    }
+  };
 
   return (
-    <Section id={id} className={`bg-slate-950 ${className}`} fullBleed>
-      <div className="relative min-h-screen w-full overflow-hidden">
-        <div className="absolute inset-0">
-          {images[0] ? (
-            <img
-              src={images[0]}
-              alt={`${label}-1`}
-              className="teaching-image"
-            />
-          ) : (
-            <ExperiencePlaceholder />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/35 to-slate-900/10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/45 via-slate-950/10 to-transparent"></div>
-        </div>
-        <div className="relative z-10 flex min-h-screen items-center">
-          <div className="container mx-auto px-8">
-            <div className="teaching-text max-w-xl teaching-card">
-              <div className="flex items-center space-x-2 text-cyan-200">
-                <Briefcase className="w-5 h-5" />
-                <span className="text-sm font-bold tracking-widest uppercase">
-                  {t("experience.section_title")}
-                </span>
-              </div>
+    <Section
+      id={id}
+      className={`experience-orbit-section experience-hero-section portfolio-surface ${hasEntered ? "is-visible" : ""} ${className}`}
+      fullBleed
+    >
+      <div
+        ref={(node) => {
+          sectionRef.current = node?.closest("section") ?? null;
+        }}
+        className="experience-orbit-frame experience-hero-frame"
+      >
+        <header className="experience-orbit-header">
+          <p className="section-kicker">01 · ABOUT ME</p>
+          <h2 className="portfolio-title">Experience</h2>
+        </header>
 
-              <div className="space-y-2 mt-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                  {t(`experience.${dataKey}.company`)}
-                </h2>
-                <h3 className="text-xl md:text-2xl text-slate-200 font-medium">
-                  {t(`experience.${dataKey}.role`)}
-                </h3>
-                <div className="flex items-center space-x-2 text-slate-300 text-sm font-medium">
-                  <Calendar className="w-4 h-4" />
-                  <span>{t(`experience.${dataKey}.period`)}</span>
-                </div>
-              </div>
+        <div
+          className="experience-hero-carousel"
+          role="group"
+          aria-label="经历卡片轮播，鼠标悬停暂停，使用左右方向键切换"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+        >
+          <div className="experience-hero-stage">
+            {experiences.map((experience, index) => (
+              <ExperienceCard
+                key={experience.id}
+                experience={experience}
+                index={index}
+                activeIndex={activeIndex}
+                onSelect={setActiveIndex}
+                onHoverChange={setIsHoveringCard}
+              />
+            ))}
+          </div>
 
-              <p className="text-lg text-slate-200 leading-relaxed mt-5">
-                {t(`experience.${dataKey}.description`)}
-              </p>
-
-              <ul className="space-y-3 mt-6">
-                {[1, 2, 3, 4].map((num) => {
-                  const key = `experience.${dataKey}.achievement${num}`;
-                  const content = t(key);
-                  if (content === key || !content) return null;
-
-                  return (
-                    <li
-                      key={num}
-                      className="flex items-start space-x-3 text-slate-200"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 mt-2 flex-shrink-0"></span>
-                      <span className="text-sm md:text-base leading-relaxed">
-                        {content}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+          <div className="experience-hero-nav" aria-label="选择经历卡片">
+            {experiences.map((experience, index) => (
+              <button
+                key={experience.id}
+                type="button"
+                className={index === activeIndex ? "is-active" : ""}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`查看${experience.title}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+              />
+            ))}
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/75 via-slate-950/35 to-transparent"></div>
       </div>
     </Section>
   );

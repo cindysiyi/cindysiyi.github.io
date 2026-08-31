@@ -43,6 +43,10 @@ module.exports = (env, argv) => {
               transpileOnly: true
             }
           }
+        },
+        {
+          test: /\.(m4a|mp3|wav|ogg)$/i,
+          type: "asset/resource"
         }
       ]
     },

@@ -1,6 +1,8 @@
+import introAudio from "../../素材/将创意转化为实用产品(2).m4a";
+
 export const config = {
-  contactEmail: "",
-  contactWechat: "",
+  contactEmail: "zhangsiyi0112@163.com",
+  contactWechat: "cindyzhang1912",
   socialLinks: {
     xiaohongshu: "",
     douyin: "",
@@ -8,6 +10,8 @@ export const config = {
   },
   projectLinks: {
     aiAgent: "https://www.dengtaai.cn",
+    vbuild: "",
+    clearRecordingGithub: "",
   },
   creatorPosts: [
     {
@@ -26,11 +30,10 @@ export const config = {
       url: "",
     },
   ],
-  heroImg:
-    "https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/01_20260220144620_11799_38.png",
+  heroImg: "/assets/cindy-profile.png",
   // audio:
   //   "https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/record.mp3",
-    audio:'',
+  audio: introAudio,
   byte_dance: [
     'https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/byte1.png'
   ],
