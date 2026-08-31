@@ -28,10 +28,10 @@ export const config = {
       url: "",
     },
   ],
-  heroImg: "/assets/cindy-profile.png",
+  heroImg: "assets/cindy-profile.png",
   // audio:
   //   "https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/record.mp3",
-  audio: "/assets/audio/intro.m4a",
+  audio: "assets/audio/intro.m4a",
   byte_dance: [
     'https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/byte1.png'
   ],

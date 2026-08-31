@@ -16,7 +16,7 @@ module.exports = (env, argv) => {
       filename: isProduction ? "js/[name].[contenthash].js" : "js/[name].js",
       assetModuleFilename: "assets/[hash][ext][query]",
       clean: true,
-      publicPath: "/"
+      publicPath: isProduction ? "./" : "/"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js"]

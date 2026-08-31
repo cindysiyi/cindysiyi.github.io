@@ -20,11 +20,11 @@ const flagBalls = [
 ];
 
 const mediaCovers = [
-  { src: "/assets/profile/media-01.jpg", label: "产品构建" },
-  { src: "/assets/profile/media-02.jpg", label: "AI 现场" },
-  { src: "/assets/profile/media-03.jpg", label: "Prompt 实验" },
-  { src: "/assets/profile/media-04.jpg", label: "公开表达" },
-  { src: "/assets/profile/media-05.jpg", label: "内容拆解" },
+  { src: "assets/profile/media-01.jpg", label: "产品构建" },
+  { src: "assets/profile/media-02.jpg", label: "AI 现场" },
+  { src: "assets/profile/media-03.jpg", label: "Prompt 实验" },
+  { src: "assets/profile/media-04.jpg", label: "公开表达" },
+  { src: "assets/profile/media-05.jpg", label: "内容拆解" },
 ];
 
 const AnimatedMetric: React.FC<{
@@ -501,7 +501,7 @@ const BeyondResume: React.FC = () => {
                 </p>
               </div>
               <img
-                src="/assets/profile/leadership-illustration.jpg"
+                src="assets/profile/leadership-illustration.jpg"
                 alt=""
                 aria-hidden="true"
                 loading="lazy"

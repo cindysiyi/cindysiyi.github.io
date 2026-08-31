@@ -9,14 +9,14 @@ type ProjectMedia = {
 };
 
 const vbuildMedia: ProjectMedia[] = [
-  { label: "Overview", src: "/assets/projects/vbuild-overview.m4v", type: "video" },
-  { label: "Resume Demo 01", src: "/assets/projects/vbuild-resume-demo-1.m4v", type: "video" },
-  { label: "Resume Demo 02", src: "/assets/projects/vbuild-resume-demo-2.m4v", type: "video" },
-  { label: "Music", src: "/assets/projects/vbuild-music.png", type: "image" },
-  { label: "Web", src: "/assets/projects/vbuild-web.png", type: "image" },
-  { label: "Resume", src: "/assets/projects/vbuild-resume.png", type: "image" },
-  { label: "Slides", src: "/assets/projects/vbuild-slides.png", type: "image" },
-  { label: "Work History", src: "/assets/projects/vbuild-history.png", type: "image" },
+  { label: "Overview", src: "assets/projects/vbuild-overview.m4v", type: "video" },
+  { label: "Resume Demo 01", src: "assets/projects/vbuild-resume-demo-1.m4v", type: "video" },
+  { label: "Resume Demo 02", src: "assets/projects/vbuild-resume-demo-2.m4v", type: "video" },
+  { label: "Music", src: "assets/projects/vbuild-music.png", type: "image" },
+  { label: "Web", src: "assets/projects/vbuild-web.png", type: "image" },
+  { label: "Resume", src: "assets/projects/vbuild-resume.png", type: "image" },
+  { label: "Slides", src: "assets/projects/vbuild-slides.png", type: "image" },
+  { label: "Work History", src: "assets/projects/vbuild-history.png", type: "image" },
 ];
 
 const AnimatedNumber: React.FC<{
@@ -290,7 +290,7 @@ const Projects: React.FC = () => {
               <div className="project-gallery-stage">
                 <video
                   ref={lighthouseVideoRef}
-                  src="/assets/projects/lighthouse-ui-demo.m4v"
+                  src="assets/projects/lighthouse-ui-demo.m4v"
                   controls
                   muted
                   loop
