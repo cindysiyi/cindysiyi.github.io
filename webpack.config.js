@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const appSrc = path.resolve(__dirname, "src");
 const appPublic = path.resolve(__dirname, "public");
@@ -54,6 +55,17 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.join(appPublic, "index.html"),
         inject: "body"
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: appPublic,
+            to: appDist,
+            globOptions: {
+              ignore: ["**/index.html"]
+            }
+          }
+        ]
       })
     ],
     devServer: {

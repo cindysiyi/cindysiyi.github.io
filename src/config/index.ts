@@ -1,5 +1,3 @@
-import introAudio from "../../素材/将创意转化为实用产品(2).m4a";
-
 export const config = {
   contactEmail: "zhangsiyi0112@163.com",
   contactWechat: "cindyzhang1912",
@@ -33,7 +31,7 @@ export const config = {
   heroImg: "/assets/cindy-profile.png",
   // audio:
   //   "https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/record.mp3",
-  audio: introAudio,
+  audio: "/assets/audio/intro.m4a",
   byte_dance: [
     'https://static-mp-748d976e-45ab-488f-a126-2ec7bc90f502.next.bspapp.com/source/byte1.png'
   ],
